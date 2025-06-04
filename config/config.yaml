@@ -1,0 +1,32 @@
+####################################
+##### Arquivo: config.yaml
+##### Desenvolvedor: Juan F. Voltolini
+##### Instituição: FIAP
+##### Trabalho: Global Solution - 1º Semestre
+##### Grupo: Felipe Sabino da Silva, Juan Felipe Voltolini, Luiz Henrique Ribeiro de Oliveira, Marco Aurélio Eberhardt Assumpção e Paulo Henrique Senise
+####################################
+
+# Configurações do Banco de Dados Oracle
+database:
+  user: "rm563348"
+  password: "220982"
+  dsn: "oracle.fiap.com.br/orcl"
+  
+# Configurações do Machine Learning
+ml:
+  model_path: "src/model/water_quality_model.pkl"
+  features: ["ph", "hardness", "solids", "chloramines", "sulfate", "conductivity", "organic_carbon", "trihalomethanes", "turbidity"]
+  target: "potability"
+  
+# Configurações da aplicação
+app:
+  name: "Sistema de Monitoramento de Qualidade da Água"
+  debug: true
+  host: "localhost"
+  port: 8501
+  
+# Configurações de logging
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/app.log" 
