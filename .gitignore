@@ -5,3 +5,5 @@
 .vscode/ipch
 .venv
 .venv/*
+src/api/venv
+/src/api/logs/app.log
