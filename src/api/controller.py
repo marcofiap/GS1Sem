@@ -23,14 +23,13 @@ class WaterQualityController:
     
     def ingest_reading(self, reading_data: Dict[str, float]) -> Dict[str, any]:
         """
-        Ingere leitura de sensor, faz predição e persiste dados.
+        Processa uma nova leitura de dados dos sensores.
         
         Args:
-            reading_data: Dicionário com dados do sensor
-                         {'ph': float, 'turbidity': float, 'chloramines': float}
+            reading_data: Dados dos sensores (ph, turbidity, chloramines, conductivity)
         
         Returns:
-            Resultado da operação com predição
+            Dict com resultado do processamento
         """
         try:
             logger.info(f"Processando leitura: {reading_data}")
@@ -41,8 +40,8 @@ class WaterQualityController:
             # 2. Criar objeto Reading
             reading = Reading(
                 timestamp=datetime.now(),
-                ph=reading_data.get('ph', 7.0),
-                turbidity=reading_data.get('turbidity', 4.0),
+                ph=reading_data.get('ph', 0.0),
+                turbidity=reading_data.get('turbidity', 0.0),
                 chloramines=reading_data.get('chloramines', 0.0),
                 potability=1 if prediction_result['is_potable'] else 0
             )
@@ -56,6 +55,7 @@ class WaterQualityController:
                 'timestamp': reading.timestamp.isoformat(),
                 'prediction': prediction_result,
                 'reading_saved': success,
+                'persisted': success,  # Manter compatibilidade
                 'message': 'Leitura processada com sucesso' if success else 'Erro ao salvar leitura'
             }
             

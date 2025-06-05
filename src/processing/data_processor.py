@@ -151,7 +151,9 @@ class WaterDataProcessor:
                     features.append(float(reading[col]))
                 else:
                     # Usar valor padrão se feature não encontrada
-                    self.logger.warning(f"Feature {col} não encontrada na leitura")
+                    # Log apenas para features críticas do sensor
+                    if col.lower() in ['ph', 'turbidity', 'chloramines', 'conductivity']:
+                        self.logger.warning(f"Feature de sensor {col} não encontrada na leitura")
                     features.append(0.0)
             
             # Converter para array numpy

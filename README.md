@@ -74,6 +74,17 @@ git clone <repository-url>
 cd GS1Sem
 ```
 
+### 2. Crie um ambiente virtual
+```bash
+python -m venv .venv
+
+#mac
+source .venv/bin/activate
+
+#windows
+.venv\Scripts\activate
+```
+
 ### 2. Instale as Dependências
 ```bash
 pip install -r requirements.txt

@@ -363,3 +363,423 @@ Importância das Features:
 2025-06-04 08:37:13,501 - src.api.controller - INFO - Recuperadas 10 leituras
 2025-06-04 08:40:17,677 - src.api.controller - INFO - Recuperadas 10 leituras
 2025-06-04 08:40:22,181 - src.api.controller - INFO - Recuperados 10 alertas
+2025-06-05 07:18:46,531 - src.model.train - INFO - === INICIANDO TREINAMENTO DO MODELO ===
+2025-06-05 07:18:46,537 - src.processing.data_processor - INFO - Dados carregados: 3276 registros
+2025-06-05 07:18:46,538 - src.processing.data_processor - INFO - Valores ausentes antes da limpeza: 1434
+2025-06-05 07:18:46,540 - src.processing.data_processor - INFO - Preenchidos valores ausentes em ph com mediana 7.04
+2025-06-05 07:18:46,540 - src.processing.data_processor - INFO - Preenchidos valores ausentes em Sulfate com mediana 333.07
+2025-06-05 07:18:46,541 - src.processing.data_processor - INFO - Preenchidos valores ausentes em Trihalomethanes com mediana 66.62
+2025-06-05 07:18:46,541 - src.processing.data_processor - INFO - Valores ausentes após limpeza: 0
+2025-06-05 07:18:46,541 - src.processing.data_processor - INFO - Registros finais: 3276
+2025-06-05 07:18:46,543 - src.model.train - INFO - === INSIGHTS DOS DADOS ===
+2025-06-05 07:18:46,543 - src.model.train - INFO - Total de registros: 3276
+2025-06-05 07:18:46,543 - src.model.train - INFO - Água potável: 1278 (39.0%)
+2025-06-05 07:18:46,543 - src.model.train - INFO - Água não potável: 1998 (61.0%)
+2025-06-05 07:18:46,543 - src.model.train - INFO - 
+=== ESTATÍSTICAS DAS FEATURES ===
+2025-06-05 07:18:46,543 - src.model.train - INFO - ph: μ=7.07, σ=1.47, min=0.00, max=14.00
+2025-06-05 07:18:46,543 - src.model.train - INFO - Hardness: μ=196.37, σ=32.88, min=47.43, max=323.12
+2025-06-05 07:18:46,543 - src.model.train - INFO - Solids: μ=22014.09, σ=8768.57, min=320.94, max=61227.20
+2025-06-05 07:18:46,543 - src.model.train - INFO - Chloramines: μ=7.12, σ=1.58, min=0.35, max=13.13
+2025-06-05 07:18:46,543 - src.model.train - INFO - Sulfate: μ=333.61, σ=36.14, min=129.00, max=481.03
+2025-06-05 07:18:46,543 - src.model.train - INFO - Conductivity: μ=426.21, σ=80.82, min=181.48, max=753.34
+2025-06-05 07:18:46,543 - src.model.train - INFO - Organic_carbon: μ=14.28, σ=3.31, min=2.20, max=28.30
+2025-06-05 07:18:46,543 - src.model.train - INFO - Trihalomethanes: μ=66.41, σ=15.77, min=0.74, max=124.00
+2025-06-05 07:18:46,543 - src.model.train - INFO - Turbidity: μ=3.97, σ=0.78, min=1.45, max=6.74
+2025-06-05 07:18:46,544 - src.model.train - INFO - Iniciando treinamento do modelo
+2025-06-05 07:18:46,547 - src.processing.data_processor - INFO - Dados carregados: 3276 registros
+2025-06-05 07:18:46,548 - src.processing.data_processor - INFO - Valores ausentes antes da limpeza: 1434
+2025-06-05 07:18:46,548 - src.processing.data_processor - INFO - Preenchidos valores ausentes em ph com mediana 7.04
+2025-06-05 07:18:46,549 - src.processing.data_processor - INFO - Preenchidos valores ausentes em Sulfate com mediana 333.07
+2025-06-05 07:18:46,550 - src.processing.data_processor - INFO - Preenchidos valores ausentes em Trihalomethanes com mediana 66.62
+2025-06-05 07:18:46,550 - src.processing.data_processor - INFO - Valores ausentes após limpeza: 0
+2025-06-05 07:18:46,550 - src.processing.data_processor - INFO - Registros finais: 3276
+2025-06-05 07:18:46,550 - src.processing.data_processor - INFO - Features utilizadas: ['ph', 'Hardness', 'Solids', 'Chloramines', 'Sulfate', 'Conductivity', 'Organic_carbon', 'Trihalomethanes', 'Turbidity']
+2025-06-05 07:18:46,551 - src.processing.data_processor - INFO - Dividindo dados - Test size: 0.2
+2025-06-05 07:18:46,552 - src.processing.data_processor - INFO - Treino: 2620 amostras
+2025-06-05 07:18:46,552 - src.processing.data_processor - INFO - Teste: 656 amostras
+2025-06-05 07:18:46,552 - src.processing.data_processor - INFO - Normalizando features
+2025-06-05 07:18:46,554 - src.processing.data_processor - INFO - Features normalizadas - Train: (2620, 9)
+2025-06-05 07:18:46,554 - src.processing.data_processor - INFO - Features normalizadas - Test: (656, 9)
+2025-06-05 07:18:46,554 - src.model.train - INFO - Treinando modelo Random Forest
+2025-06-05 07:18:46,967 - src.model.train - INFO - Acurácia no treino: 0.9095
+2025-06-05 07:18:46,967 - src.model.train - INFO - Acurácia no teste: 0.6662
+2025-06-05 07:18:46,972 - src.model.train - INFO - 
+Relatório de Classificação:
+2025-06-05 07:18:46,975 - src.model.train - INFO - 
+              precision    recall  f1-score   support
+
+           0       0.69      0.83      0.75       400
+           1       0.61      0.41      0.49       256
+
+    accuracy                           0.67       656
+   macro avg       0.65      0.62      0.62       656
+weighted avg       0.66      0.67      0.65       656
+
+2025-06-05 07:18:46,975 - src.model.train - INFO - 
+Matriz de Confusão:
+2025-06-05 07:18:46,975 - src.model.train - INFO - 
+[[333  67]
+ [152 104]]
+2025-06-05 07:18:48,536 - src.model.train - INFO - Cross-validation scores: [0.65648855 0.69465649 0.66984733 0.62977099 0.63740458]
+2025-06-05 07:18:48,536 - src.model.train - INFO - CV Score médio: 0.6576 (+/- 0.0465)
+2025-06-05 07:18:48,539 - src.model.train - INFO - 
+Importância das Features:
+2025-06-05 07:18:48,539 - src.model.train - INFO - ph: 0.1628
+2025-06-05 07:18:48,539 - src.model.train - INFO - Hardness: 0.1224
+2025-06-05 07:18:48,539 - src.model.train - INFO - Solids: 0.1164
+2025-06-05 07:18:48,539 - src.model.train - INFO - Chloramines: 0.1145
+2025-06-05 07:18:48,539 - src.model.train - INFO - Sulfate: 0.1707
+2025-06-05 07:18:48,539 - src.model.train - INFO - Conductivity: 0.0870
+2025-06-05 07:18:48,539 - src.model.train - INFO - Organic_carbon: 0.0791
+2025-06-05 07:18:48,539 - src.model.train - INFO - Trihalomethanes: 0.0680
+2025-06-05 07:18:48,539 - src.model.train - INFO - Turbidity: 0.0792
+2025-06-05 07:18:48,554 - src.model.train - INFO - Modelo salvo em: src/model/water_quality_model.pkl
+2025-06-05 07:18:48,554 - src.model.train - INFO - === TREINAMENTO CONCLUÍDO COM SUCESSO ===
+2025-06-05 07:18:48,554 - src.model.train - INFO - Acurácia final no teste: 0.6662
+2025-06-05 07:19:04,815 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 07:19:04,870 - src.persistence.db - INFO - Tabela readings já existe
+2025-06-05 07:19:04,889 - src.persistence.db - INFO - Conexão com Oracle fechada
+2025-06-05 07:19:05,093 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 07:19:05,133 - src.api.controller - INFO - Recuperadas 10 leituras
+2025-06-05 07:19:05,172 - src.api.controller - INFO - Recuperados 10 alertas
+2025-06-05 07:19:05,173 - src.api.controller - INFO - Estatísticas calculadas: 10 leituras, 0 potáveis
+2025-06-05 07:19:05,221 - src.api.controller - INFO - Recuperadas 10 leituras
+2025-06-05 07:19:18,086 - src.api.controller - INFO - Recuperadas 10 leituras
+2025-06-05 07:19:22,779 - src.api.controller - INFO - Recuperados 10 alertas
+2025-06-05 07:37:30,896 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 07:37:30,954 - src.persistence.db - INFO - Tabela readings já existe
+2025-06-05 07:37:30,973 - src.persistence.db - INFO - Conexão com Oracle fechada
+2025-06-05 07:37:30,974 - __main__ - INFO - Controller ML inicializado com sucesso
+2025-06-05 07:37:35,996 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.1.16:8000
+2025-06-05 07:37:35,996 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-05 07:37:35,997 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 07:37:37,474 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 07:37:37,520 - src.persistence.db - INFO - Tabela readings já existe
+2025-06-05 07:37:37,541 - src.persistence.db - INFO - Conexão com Oracle fechada
+2025-06-05 07:37:37,543 - __main__ - INFO - Controller ML inicializado com sucesso
+2025-06-05 07:37:37,559 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 07:37:37,568 - werkzeug - INFO -  * Debugger PIN: 122-358-257
+2025-06-05 07:37:39,903 - werkzeug - INFO - 192.168.1.16 - - [05/Jun/2025 07:37:39] "GET /test HTTP/1.1" 200 -
+2025-06-05 07:37:52,504 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 07:37:52,543 - src.api.controller - INFO - Recuperadas 10 leituras
+2025-06-05 07:37:52,581 - src.api.controller - INFO - Recuperados 10 alertas
+2025-06-05 07:37:52,581 - src.api.controller - INFO - Estatísticas calculadas: 10 leituras, 0 potáveis
+2025-06-05 07:37:52,581 - werkzeug - INFO - 192.168.1.16 - - [05/Jun/2025 07:37:52] "GET /status HTTP/1.1" 200 -
+2025-06-05 07:39:02,566 - __main__ - INFO - [07:39:02] Dados recebidos do ESP32 - pH:7.2, Turbidez:2.5, Cloro:1.5, Condutividade:400.0
+2025-06-05 07:39:02,566 - __main__ - INFO - Enviando para sistema ML: {'ph': 7.2, 'turbidity': 2.5, 'chloramines': 1.5, 'conductivity': 400.0}
+2025-06-05 07:39:02,566 - src.api.controller - INFO - Processando leitura: {'ph': 7.2, 'turbidity': 2.5, 'chloramines': 1.5, 'conductivity': 400.0}
+2025-06-05 07:39:02,582 - src.model.predict - INFO - Modelo carregado com sucesso de: src/model/water_quality_model.pkl
+2025-06-05 07:39:02,582 - src.processing.data_processor - WARNING - Feature Hardness não encontrada na leitura
+2025-06-05 07:39:02,582 - src.processing.data_processor - WARNING - Feature Solids não encontrada na leitura
+2025-06-05 07:39:02,582 - src.processing.data_processor - WARNING - Feature Sulfate não encontrada na leitura
+2025-06-05 07:39:02,582 - src.processing.data_processor - WARNING - Feature Organic_carbon não encontrada na leitura
+2025-06-05 07:39:02,582 - src.processing.data_processor - WARNING - Feature Trihalomethanes não encontrada na leitura
+2025-06-05 07:39:02,589 - src.model.predict - INFO - Predição de sensor: NAO_POTAVEL (confiança: 0.531)
+2025-06-05 07:39:02,631 - src.persistence.db - INFO - Leitura salva: pH=7.2, Turbidez=2.5
+2025-06-05 07:39:02,631 - src.api.controller - INFO - Leitura processada: NAO_POTAVEL
+2025-06-05 07:39:02,631 - __main__ - INFO - ✅ Predição: NAO_POTAVEL (Confiança: 53.1%, Risco: UNKNOWN)
+2025-06-05 07:39:02,631 - __main__ - WARNING - ⚠️ Dados processados mas não salvos no banco
+2025-06-05 07:39:02,631 - werkzeug - INFO - 192.168.1.16 - - [05/Jun/2025 07:39:02] "GET /data?ph=7.2&turbidity=2.5&chlorine=1.5&conductivity=400 HTTP/1.1" 200 -
+2025-06-05 07:39:18,602 - __main__ - INFO - [07:39:18] Dados recebidos do ESP32 - pH:9.5, Turbidez:15.0, Cloro:0.1, Condutividade:1200.0
+2025-06-05 07:39:18,602 - __main__ - INFO - Enviando para sistema ML: {'ph': 9.5, 'turbidity': 15.0, 'chloramines': 0.1, 'conductivity': 1200.0}
+2025-06-05 07:39:18,602 - src.api.controller - INFO - Processando leitura: {'ph': 9.5, 'turbidity': 15.0, 'chloramines': 0.1, 'conductivity': 1200.0}
+2025-06-05 07:39:18,602 - src.processing.data_processor - WARNING - Feature Hardness não encontrada na leitura
+2025-06-05 07:39:18,602 - src.processing.data_processor - WARNING - Feature Solids não encontrada na leitura
+2025-06-05 07:39:18,602 - src.processing.data_processor - WARNING - Feature Sulfate não encontrada na leitura
+2025-06-05 07:39:18,602 - src.processing.data_processor - WARNING - Feature Organic_carbon não encontrada na leitura
+2025-06-05 07:39:18,602 - src.processing.data_processor - WARNING - Feature Trihalomethanes não encontrada na leitura
+2025-06-05 07:39:18,609 - src.model.predict - INFO - Predição de sensor: NAO_POTAVEL (confiança: 0.562)
+2025-06-05 07:39:18,648 - src.persistence.db - INFO - Leitura salva: pH=9.5, Turbidez=15.0
+2025-06-05 07:39:18,648 - src.api.controller - INFO - Leitura processada: NAO_POTAVEL
+2025-06-05 07:39:18,648 - __main__ - INFO - ✅ Predição: NAO_POTAVEL (Confiança: 56.2%, Risco: UNKNOWN)
+2025-06-05 07:39:18,648 - __main__ - WARNING - ⚠️ Dados processados mas não salvos no banco
+2025-06-05 07:39:18,648 - werkzeug - INFO - 192.168.1.16 - - [05/Jun/2025 07:39:18] "GET /data?ph=9.5&turbidity=15.0&chlorine=0.1&conductivity=1200 HTTP/1.1" 200 -
+2025-06-05 07:39:28,319 - __main__ - INFO - [07:39:28] Dados recebidos do ESP32 - pH:7.0, Turbidez:1.0, Cloro:2.0, Condutividade:300.0
+2025-06-05 07:39:28,319 - __main__ - INFO - Enviando para sistema ML: {'ph': 7.0, 'turbidity': 1.0, 'chloramines': 2.0, 'conductivity': 300.0}
+2025-06-05 07:39:28,319 - src.api.controller - INFO - Processando leitura: {'ph': 7.0, 'turbidity': 1.0, 'chloramines': 2.0, 'conductivity': 300.0}
+2025-06-05 07:39:28,319 - src.processing.data_processor - WARNING - Feature Hardness não encontrada na leitura
+2025-06-05 07:39:28,319 - src.processing.data_processor - WARNING - Feature Solids não encontrada na leitura
+2025-06-05 07:39:28,319 - src.processing.data_processor - WARNING - Feature Sulfate não encontrada na leitura
+2025-06-05 07:39:28,319 - src.processing.data_processor - WARNING - Feature Organic_carbon não encontrada na leitura
+2025-06-05 07:39:28,319 - src.processing.data_processor - WARNING - Feature Trihalomethanes não encontrada na leitura
+2025-06-05 07:39:28,324 - src.model.predict - INFO - Predição de sensor: NAO_POTAVEL (confiança: 0.506)
+2025-06-05 07:39:28,367 - src.persistence.db - INFO - Leitura salva: pH=7.0, Turbidez=1.0
+2025-06-05 07:39:28,367 - src.api.controller - INFO - Leitura processada: NAO_POTAVEL
+2025-06-05 07:39:28,367 - __main__ - INFO - ✅ Predição: NAO_POTAVEL (Confiança: 50.6%, Risco: UNKNOWN)
+2025-06-05 07:39:28,367 - __main__ - WARNING - ⚠️ Dados processados mas não salvos no banco
+2025-06-05 07:39:28,367 - werkzeug - INFO - 192.168.1.16 - - [05/Jun/2025 07:39:28] "GET /data?ph=7.0&turbidity=1.0&chlorine=2.0&conductivity=300 HTTP/1.1" 200 -
+2025-06-05 07:39:42,124 - src.api.controller - INFO - Recuperadas 5 leituras
+2025-06-05 07:39:42,125 - werkzeug - INFO - 192.168.1.16 - - [05/Jun/2025 07:39:42] "GET /historico?limit=5 HTTP/1.1" 200 -
+2025-06-05 07:39:57,610 - __main__ - INFO - [07:39:57] Dados recebidos do ESP32 - pH:7.3, Turbidez:3.2, Cloro:1.8, Condutividade:450.0
+2025-06-05 07:39:57,610 - __main__ - INFO - Enviando para sistema ML: {'ph': 7.3, 'turbidity': 3.2, 'chloramines': 1.8, 'conductivity': 450.0}
+2025-06-05 07:39:57,610 - src.api.controller - INFO - Processando leitura: {'ph': 7.3, 'turbidity': 3.2, 'chloramines': 1.8, 'conductivity': 450.0}
+2025-06-05 07:39:57,610 - src.processing.data_processor - WARNING - Feature Hardness não encontrada na leitura
+2025-06-05 07:39:57,610 - src.processing.data_processor - WARNING - Feature Solids não encontrada na leitura
+2025-06-05 07:39:57,610 - src.processing.data_processor - WARNING - Feature Sulfate não encontrada na leitura
+2025-06-05 07:39:57,611 - src.processing.data_processor - WARNING - Feature Organic_carbon não encontrada na leitura
+2025-06-05 07:39:57,611 - src.processing.data_processor - WARNING - Feature Trihalomethanes não encontrada na leitura
+2025-06-05 07:39:57,617 - src.model.predict - INFO - Predição de sensor: NAO_POTAVEL (confiança: 0.535)
+2025-06-05 07:39:57,655 - src.persistence.db - INFO - Leitura salva: pH=7.3, Turbidez=3.2
+2025-06-05 07:39:57,655 - src.api.controller - INFO - Leitura processada: NAO_POTAVEL
+2025-06-05 07:39:57,655 - __main__ - INFO - ✅ Predição: NAO_POTAVEL (Confiança: 53.5%, Risco: UNKNOWN)
+2025-06-05 07:39:57,655 - __main__ - WARNING - ⚠️ Dados processados mas não salvos no banco
+2025-06-05 07:39:57,655 - werkzeug - INFO - 192.168.1.16 - - [05/Jun/2025 07:39:57] "GET /data?ph=7.3&turbidity=3.2&chlorine=1.8&conductivity=450 HTTP/1.1" 200 -
+2025-06-05 07:40:04,578 - __main__ - INFO - [07:40:04] Dados recebidos do ESP32 - pH:5.5, Turbidez:2.0, Cloro:1.5, Condutividade:400.0
+2025-06-05 07:40:04,578 - __main__ - INFO - Enviando para sistema ML: {'ph': 5.5, 'turbidity': 2.0, 'chloramines': 1.5, 'conductivity': 400.0}
+2025-06-05 07:40:04,578 - src.api.controller - INFO - Processando leitura: {'ph': 5.5, 'turbidity': 2.0, 'chloramines': 1.5, 'conductivity': 400.0}
+2025-06-05 07:40:04,578 - src.processing.data_processor - WARNING - Feature Hardness não encontrada na leitura
+2025-06-05 07:40:04,578 - src.processing.data_processor - WARNING - Feature Solids não encontrada na leitura
+2025-06-05 07:40:04,578 - src.processing.data_processor - WARNING - Feature Sulfate não encontrada na leitura
+2025-06-05 07:40:04,578 - src.processing.data_processor - WARNING - Feature Organic_carbon não encontrada na leitura
+2025-06-05 07:40:04,578 - src.processing.data_processor - WARNING - Feature Trihalomethanes não encontrada na leitura
+2025-06-05 07:40:04,583 - src.model.predict - INFO - Predição de sensor: POTAVEL (confiança: 0.517)
+2025-06-05 07:40:04,622 - src.persistence.db - INFO - Leitura salva: pH=5.5, Turbidez=2.0
+2025-06-05 07:40:04,622 - src.api.controller - INFO - Leitura processada: POTAVEL
+2025-06-05 07:40:04,622 - __main__ - INFO - ✅ Predição: POTAVEL (Confiança: 51.7%, Risco: UNKNOWN)
+2025-06-05 07:40:04,622 - __main__ - WARNING - ⚠️ Dados processados mas não salvos no banco
+2025-06-05 07:40:04,622 - werkzeug - INFO - 192.168.1.16 - - [05/Jun/2025 07:40:04] "GET /data?ph=5.5&turbidity=2.0&chlorine=1.5&conductivity=400 HTTP/1.1" 200 -
+2025-06-05 07:40:14,497 - __main__ - INFO - [07:40:14] Dados recebidos do ESP32 - pH:8.2, Turbidez:4.1, Cloro:2.5, Condutividade:380.0
+2025-06-05 07:40:14,497 - __main__ - INFO - Enviando para sistema ML: {'ph': 8.2, 'turbidity': 4.1, 'chloramines': 2.5, 'conductivity': 380.0}
+2025-06-05 07:40:14,497 - src.api.controller - INFO - Processando leitura: {'ph': 8.2, 'turbidity': 4.1, 'chloramines': 2.5, 'conductivity': 380.0}
+2025-06-05 07:40:14,497 - src.processing.data_processor - WARNING - Feature Hardness não encontrada na leitura
+2025-06-05 07:40:14,497 - src.processing.data_processor - WARNING - Feature Solids não encontrada na leitura
+2025-06-05 07:40:14,497 - src.processing.data_processor - WARNING - Feature Sulfate não encontrada na leitura
+2025-06-05 07:40:14,497 - src.processing.data_processor - WARNING - Feature Organic_carbon não encontrada na leitura
+2025-06-05 07:40:14,497 - src.processing.data_processor - WARNING - Feature Trihalomethanes não encontrada na leitura
+2025-06-05 07:40:14,503 - src.model.predict - INFO - Predição de sensor: NAO_POTAVEL (confiança: 0.518)
+2025-06-05 07:40:14,540 - src.persistence.db - INFO - Leitura salva: pH=8.2, Turbidez=4.1
+2025-06-05 07:40:14,541 - src.api.controller - INFO - Leitura processada: NAO_POTAVEL
+2025-06-05 07:40:14,541 - __main__ - INFO - ✅ Predição: NAO_POTAVEL (Confiança: 51.8%, Risco: UNKNOWN)
+2025-06-05 07:40:14,541 - __main__ - WARNING - ⚠️ Dados processados mas não salvos no banco
+2025-06-05 07:40:14,541 - werkzeug - INFO - 192.168.1.16 - - [05/Jun/2025 07:40:14] "GET /data?ph=8.2&turbidity=4.1&chlorine=2.5&conductivity=380 HTTP/1.1" 200 -
+2025-06-05 07:40:33,956 - __main__ - INFO - [07:40:33] Dados recebidos do ESP32 - pH:6.8, Turbidez:2.8, Cloro:1.2, Condutividade:420.0
+2025-06-05 07:40:33,956 - __main__ - INFO - Enviando para sistema ML: {'ph': 6.8, 'turbidity': 2.8, 'chloramines': 1.2, 'conductivity': 420.0}
+2025-06-05 07:40:33,956 - src.api.controller - INFO - Processando leitura: {'ph': 6.8, 'turbidity': 2.8, 'chloramines': 1.2, 'conductivity': 420.0}
+2025-06-05 07:40:33,956 - src.processing.data_processor - WARNING - Feature Hardness não encontrada na leitura
+2025-06-05 07:40:33,956 - src.processing.data_processor - WARNING - Feature Solids não encontrada na leitura
+2025-06-05 07:40:33,956 - src.processing.data_processor - WARNING - Feature Sulfate não encontrada na leitura
+2025-06-05 07:40:33,956 - src.processing.data_processor - WARNING - Feature Organic_carbon não encontrada na leitura
+2025-06-05 07:40:33,956 - src.processing.data_processor - WARNING - Feature Trihalomethanes não encontrada na leitura
+2025-06-05 07:40:33,961 - src.model.predict - INFO - Predição de sensor: NAO_POTAVEL (confiança: 0.552)
+2025-06-05 07:40:34,003 - src.persistence.db - INFO - Leitura salva: pH=6.8, Turbidez=2.8
+2025-06-05 07:40:34,004 - src.api.controller - INFO - Leitura processada: NAO_POTAVEL
+2025-06-05 07:40:34,004 - __main__ - INFO - ✅ Predição: NAO_POTAVEL (Confiança: 55.2%, Risco: UNKNOWN)
+2025-06-05 07:40:34,005 - __main__ - WARNING - ⚠️ Dados processados mas não salvos no banco
+2025-06-05 07:40:34,005 - werkzeug - INFO - 192.168.1.16 - - [05/Jun/2025 07:40:34] "GET /data?ph=6.8&turbidity=2.8&chlorine=1.2&conductivity=420 HTTP/1.1" 200 -
+2025-06-05 07:40:43,313 - __main__ - INFO - [07:40:43] Dados recebidos do ESP32 - pH:6.2, Turbidez:1.5, Cloro:0.8, Condutividade:350.0
+2025-06-05 07:40:43,313 - __main__ - INFO - Enviando para sistema ML: {'ph': 6.2, 'turbidity': 1.5, 'chloramines': 0.8, 'conductivity': 350.0}
+2025-06-05 07:40:43,314 - src.api.controller - INFO - Processando leitura: {'ph': 6.2, 'turbidity': 1.5, 'chloramines': 0.8, 'conductivity': 350.0}
+2025-06-05 07:40:43,314 - src.processing.data_processor - WARNING - Feature Hardness não encontrada na leitura
+2025-06-05 07:40:43,314 - src.processing.data_processor - WARNING - Feature Solids não encontrada na leitura
+2025-06-05 07:40:43,314 - src.processing.data_processor - WARNING - Feature Sulfate não encontrada na leitura
+2025-06-05 07:40:43,314 - src.processing.data_processor - WARNING - Feature Organic_carbon não encontrada na leitura
+2025-06-05 07:40:43,314 - src.processing.data_processor - WARNING - Feature Trihalomethanes não encontrada na leitura
+2025-06-05 07:40:43,319 - src.model.predict - INFO - Predição de sensor: POTAVEL (confiança: 0.509)
+2025-06-05 07:40:43,358 - src.persistence.db - INFO - Leitura salva: pH=6.2, Turbidez=1.5
+2025-06-05 07:40:43,358 - src.api.controller - INFO - Leitura processada: POTAVEL
+2025-06-05 07:40:43,358 - __main__ - INFO - ✅ Predição: POTAVEL (Confiança: 50.9%, Risco: UNKNOWN)
+2025-06-05 07:40:43,358 - __main__ - WARNING - ⚠️ Dados processados mas não salvos no banco
+2025-06-05 07:40:43,359 - werkzeug - INFO - 192.168.1.16 - - [05/Jun/2025 07:40:43] "GET /data?ph=6.2&turbidity=1.5&chlorine=0.8&conductivity=350 HTTP/1.1" 200 -
+2025-06-05 07:42:09,357 - werkzeug - INFO -  * Detected change in '/Users/juanfelipevoltolini/Documents/FIAP/Fase 4/GS1Sem/servidor_wokwi.py', reloading
+2025-06-05 07:42:09,481 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 07:42:11,031 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 07:42:11,076 - src.persistence.db - INFO - Tabela readings já existe
+2025-06-05 07:42:11,096 - src.persistence.db - INFO - Conexão com Oracle fechada
+2025-06-05 07:42:11,097 - __main__ - INFO - Controller ML inicializado com sucesso
+2025-06-05 07:42:11,116 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 07:42:11,128 - werkzeug - INFO -  * Debugger PIN: 122-358-257
+2025-06-05 07:42:31,488 - werkzeug - INFO -  * Detected change in '/Users/juanfelipevoltolini/Documents/FIAP/Fase 4/GS1Sem/src/processing/data_processor.py', reloading
+2025-06-05 07:42:31,600 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 07:42:33,064 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 07:42:33,110 - src.persistence.db - INFO - Tabela readings já existe
+2025-06-05 07:42:33,130 - src.persistence.db - INFO - Conexão com Oracle fechada
+2025-06-05 07:42:33,131 - __main__ - INFO - Controller ML inicializado com sucesso
+2025-06-05 07:42:33,148 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 07:42:33,162 - werkzeug - INFO -  * Debugger PIN: 122-358-257
+2025-06-05 07:42:52,484 - werkzeug - INFO -  * Detected change in '/Users/juanfelipevoltolini/Documents/FIAP/Fase 4/GS1Sem/src/api/controller.py', reloading
+2025-06-05 07:42:52,592 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 07:42:54,021 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 07:42:54,068 - src.persistence.db - INFO - Tabela readings já existe
+2025-06-05 07:42:54,088 - src.persistence.db - INFO - Conexão com Oracle fechada
+2025-06-05 07:42:54,089 - __main__ - INFO - Controller ML inicializado com sucesso
+2025-06-05 07:42:54,103 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 07:42:54,111 - werkzeug - INFO -  * Debugger PIN: 122-358-257
+2025-06-05 07:43:19,658 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 07:43:19,704 - src.persistence.db - INFO - Tabela readings já existe
+2025-06-05 07:43:19,723 - src.persistence.db - INFO - Conexão com Oracle fechada
+2025-06-05 07:43:19,724 - __main__ - INFO - Controller ML inicializado com sucesso
+2025-06-05 07:43:24,751 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.1.16:8000
+2025-06-05 07:43:24,752 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-05 07:43:24,753 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 07:43:26,123 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 07:43:26,170 - src.persistence.db - INFO - Tabela readings já existe
+2025-06-05 07:43:26,190 - src.persistence.db - INFO - Conexão com Oracle fechada
+2025-06-05 07:43:26,191 - __main__ - INFO - Controller ML inicializado com sucesso
+2025-06-05 07:43:26,205 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 07:43:26,213 - werkzeug - INFO -  * Debugger PIN: 122-358-257
+2025-06-05 07:43:34,512 - __main__ - INFO - [07:43:34] Dados recebidos do ESP32 - pH:7.1, Turbidez:2.1, Cloro:1.3, Condutividade:380.0
+2025-06-05 07:43:34,512 - __main__ - INFO - Enviando para sistema ML: {'ph': 7.1, 'turbidity': 2.1, 'chloramines': 1.3, 'conductivity': 380.0}
+2025-06-05 07:43:34,512 - src.api.controller - INFO - Processando leitura: {'ph': 7.1, 'turbidity': 2.1, 'chloramines': 1.3, 'conductivity': 380.0}
+2025-06-05 07:43:34,523 - src.model.predict - INFO - Modelo carregado com sucesso de: src/model/water_quality_model.pkl
+2025-06-05 07:43:34,528 - src.model.predict - INFO - Predição de sensor: NAO_POTAVEL (confiança: 0.578)
+2025-06-05 07:43:34,528 - src.api.controller - ERROR - Erro ao processar leitura: Reading.__init__() missing 1 required positional argument: 'timestamp'
+2025-06-05 07:43:34,528 - __main__ - ERROR - ❌ Falha no sistema ML: Erro ao processar leitura
+2025-06-05 07:43:34,529 - werkzeug - INFO - 192.168.1.16 - - [05/Jun/2025 07:43:34] "[35m[1mGET /data?ph=7.1&turbidity=2.1&chlorine=1.3&conductivity=380 HTTP/1.1[0m" 500 -
+2025-06-05 07:43:41,817 - werkzeug - INFO - 192.168.1.16 - - [05/Jun/2025 07:43:41] "GET /test HTTP/1.1" 200 -
+2025-06-05 07:43:49,393 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 07:43:49,432 - src.api.controller - INFO - Recuperadas 18 leituras
+2025-06-05 07:43:49,471 - src.api.controller - INFO - Recuperados 16 alertas
+2025-06-05 07:43:49,471 - src.api.controller - INFO - Estatísticas calculadas: 18 leituras, 2 potáveis
+2025-06-05 07:43:49,471 - werkzeug - INFO - 192.168.1.16 - - [05/Jun/2025 07:43:49] "GET /status HTTP/1.1" 200 -
+2025-06-05 07:43:58,767 - werkzeug - INFO -  * Detected change in '/Users/juanfelipevoltolini/Documents/FIAP/Fase 4/GS1Sem/src/api/controller.py', reloading
+2025-06-05 07:43:58,869 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 07:44:00,320 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 07:44:00,509 - src.persistence.db - INFO - Tabela readings já existe
+2025-06-05 07:44:00,529 - src.persistence.db - INFO - Conexão com Oracle fechada
+2025-06-05 07:44:00,530 - __main__ - INFO - Controller ML inicializado com sucesso
+2025-06-05 07:44:00,544 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 07:44:00,553 - werkzeug - INFO -  * Debugger PIN: 122-358-257
+2025-06-05 07:44:27,008 - werkzeug - INFO -  * Detected change in '/Users/juanfelipevoltolini/Documents/FIAP/Fase 4/GS1Sem/src/api/controller.py', reloading
+2025-06-05 07:44:27,116 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 07:44:28,530 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 07:44:28,579 - src.persistence.db - INFO - Tabela readings já existe
+2025-06-05 07:44:28,598 - src.persistence.db - INFO - Conexão com Oracle fechada
+2025-06-05 07:44:28,600 - __main__ - INFO - Controller ML inicializado com sucesso
+2025-06-05 07:44:28,614 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 07:44:28,621 - werkzeug - INFO -  * Debugger PIN: 122-358-257
+2025-06-05 07:44:36,561 - __main__ - INFO - [07:44:36] Dados recebidos do ESP32 - pH:7.1, Turbidez:2.1, Cloro:1.3, Condutividade:380.0
+2025-06-05 07:44:36,561 - __main__ - INFO - Enviando para sistema ML: {'ph': 7.1, 'turbidity': 2.1, 'chloramines': 1.3, 'conductivity': 380.0}
+2025-06-05 07:44:36,561 - src.api.controller - INFO - Processando leitura: {'ph': 7.1, 'turbidity': 2.1, 'chloramines': 1.3, 'conductivity': 380.0}
+2025-06-05 07:44:36,573 - src.model.predict - INFO - Modelo carregado com sucesso de: src/model/water_quality_model.pkl
+2025-06-05 07:44:36,579 - src.model.predict - INFO - Predição de sensor: NAO_POTAVEL (confiança: 0.578)
+2025-06-05 07:44:36,579 - src.api.controller - ERROR - Erro ao processar leitura: Reading.__init__() missing 1 required positional argument: 'timestamp'
+2025-06-05 07:44:36,579 - __main__ - ERROR - ❌ Falha no sistema ML: Erro ao processar leitura
+2025-06-05 07:44:36,579 - werkzeug - INFO - 192.168.1.16 - - [05/Jun/2025 07:44:36] "[35m[1mGET /data?ph=7.1&turbidity=2.1&chlorine=1.3&conductivity=380 HTTP/1.1[0m" 500 -
+2025-06-05 07:44:56,746 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 07:44:56,797 - src.persistence.db - INFO - Tabela readings já existe
+2025-06-05 07:44:56,816 - src.persistence.db - INFO - Conexão com Oracle fechada
+2025-06-05 07:44:56,817 - __main__ - INFO - Controller ML inicializado com sucesso
+2025-06-05 07:45:01,840 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.1.16:8000
+2025-06-05 07:45:01,840 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-05 07:45:01,842 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 07:45:03,211 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 07:45:03,257 - src.persistence.db - INFO - Tabela readings já existe
+2025-06-05 07:45:03,277 - src.persistence.db - INFO - Conexão com Oracle fechada
+2025-06-05 07:45:03,278 - __main__ - INFO - Controller ML inicializado com sucesso
+2025-06-05 07:45:03,294 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 07:45:03,304 - werkzeug - INFO -  * Debugger PIN: 122-358-257
+2025-06-05 07:45:17,436 - __main__ - INFO - [07:45:17] Dados recebidos do ESP32 - pH:7.1, Turbidez:2.1, Cloro:1.3, Condutividade:380.0
+2025-06-05 07:45:17,436 - __main__ - INFO - Enviando para sistema ML: {'ph': 7.1, 'turbidity': 2.1, 'chloramines': 1.3, 'conductivity': 380.0}
+2025-06-05 07:45:17,437 - src.api.controller - INFO - Processando leitura: {'ph': 7.1, 'turbidity': 2.1, 'chloramines': 1.3, 'conductivity': 380.0}
+2025-06-05 07:45:17,448 - src.model.predict - INFO - Modelo carregado com sucesso de: src/model/water_quality_model.pkl
+2025-06-05 07:45:17,453 - src.model.predict - INFO - Predição de sensor: NAO_POTAVEL (confiança: 0.578)
+2025-06-05 07:45:17,453 - src.api.controller - ERROR - Erro ao processar leitura: Reading.__init__() missing 1 required positional argument: 'timestamp'
+2025-06-05 07:45:17,453 - __main__ - ERROR - ❌ Falha no sistema ML: Erro ao processar leitura
+2025-06-05 07:45:17,454 - werkzeug - INFO - 192.168.1.16 - - [05/Jun/2025 07:45:17] "[35m[1mGET /data?ph=7.1&turbidity=2.1&chlorine=1.3&conductivity=380 HTTP/1.1[0m" 500 -
+2025-06-05 07:45:32,820 - werkzeug - INFO -  * Detected change in '/Users/juanfelipevoltolini/Documents/FIAP/Fase 4/GS1Sem/src/processing/data_processor.py', reloading
+2025-06-05 07:45:32,935 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 07:45:34,450 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 07:45:34,498 - src.persistence.db - INFO - Tabela readings já existe
+2025-06-05 07:45:34,518 - src.persistence.db - INFO - Conexão com Oracle fechada
+2025-06-05 07:45:34,520 - __main__ - INFO - Controller ML inicializado com sucesso
+2025-06-05 07:45:34,533 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 07:45:34,542 - werkzeug - INFO -  * Debugger PIN: 122-358-257
+2025-06-05 07:45:43,923 - __main__ - INFO - [07:45:43] Dados recebidos do ESP32 - pH:6.8, Turbidez:2.0, Cloro:1.5, Condutividade:400.0
+2025-06-05 07:45:43,923 - __main__ - INFO - Enviando para sistema ML: {'ph': 6.8, 'turbidity': 2.0, 'chloramines': 1.5, 'conductivity': 400.0}
+2025-06-05 07:45:43,923 - src.api.controller - INFO - Processando leitura: {'ph': 6.8, 'turbidity': 2.0, 'chloramines': 1.5, 'conductivity': 400.0}
+2025-06-05 07:45:43,935 - src.model.predict - INFO - Modelo carregado com sucesso de: src/model/water_quality_model.pkl
+2025-06-05 07:45:43,940 - src.model.predict - INFO - Predição de sensor: NAO_POTAVEL (confiança: 0.535)
+2025-06-05 07:45:43,941 - src.api.controller - ERROR - Erro ao processar leitura: Reading.__init__() missing 1 required positional argument: 'timestamp'
+2025-06-05 07:45:43,941 - __main__ - ERROR - ❌ Falha no sistema ML: Erro ao processar leitura
+2025-06-05 07:45:43,941 - werkzeug - INFO - 192.168.1.16 - - [05/Jun/2025 07:45:43] "[35m[1mGET /data?ph=6.8&turbidity=2.0&chlorine=1.5&conductivity=400 HTTP/1.1[0m" 500 -
+2025-06-05 07:46:02,027 - werkzeug - INFO -  * Detected change in '/Users/juanfelipevoltolini/Documents/FIAP/Fase 4/GS1Sem/src/api/controller.py', reloading
+2025-06-05 07:46:02,132 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 07:46:03,566 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 07:46:03,611 - src.persistence.db - INFO - Tabela readings já existe
+2025-06-05 07:46:03,631 - src.persistence.db - INFO - Conexão com Oracle fechada
+2025-06-05 07:46:03,632 - __main__ - INFO - Controller ML inicializado com sucesso
+2025-06-05 07:46:03,646 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 07:46:03,652 - werkzeug - INFO -  * Debugger PIN: 122-358-257
+2025-06-05 07:46:25,024 - werkzeug - INFO -  * Detected change in '/Users/juanfelipevoltolini/Documents/FIAP/Fase 4/GS1Sem/src/api/controller.py', reloading
+2025-06-05 07:46:25,159 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 07:46:26,582 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 07:46:26,627 - src.persistence.db - INFO - Tabela readings já existe
+2025-06-05 07:46:26,647 - src.persistence.db - INFO - Conexão com Oracle fechada
+2025-06-05 07:46:26,648 - __main__ - INFO - Controller ML inicializado com sucesso
+2025-06-05 07:46:26,663 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 07:46:26,671 - werkzeug - INFO -  * Debugger PIN: 122-358-257
+2025-06-05 07:46:35,055 - __main__ - INFO - [07:46:35] Dados recebidos do ESP32 - pH:6.8, Turbidez:2.0, Cloro:1.5, Condutividade:400.0
+2025-06-05 07:46:35,055 - __main__ - INFO - Enviando para sistema ML: {'ph': 6.8, 'turbidity': 2.0, 'chloramines': 1.5, 'conductivity': 400.0}
+2025-06-05 07:46:35,056 - src.api.controller - INFO - Processando leitura: {'ph': 6.8, 'turbidity': 2.0, 'chloramines': 1.5, 'conductivity': 400.0}
+2025-06-05 07:46:35,068 - src.model.predict - INFO - Modelo carregado com sucesso de: src/model/water_quality_model.pkl
+2025-06-05 07:46:35,073 - src.model.predict - INFO - Predição de sensor: NAO_POTAVEL (confiança: 0.535)
+2025-06-05 07:46:35,074 - src.api.controller - ERROR - Erro ao processar leitura: Reading.__init__() missing 1 required positional argument: 'timestamp'
+2025-06-05 07:46:35,074 - __main__ - ERROR - ❌ Falha no sistema ML: Erro ao processar leitura
+2025-06-05 07:46:35,074 - werkzeug - INFO - 192.168.1.16 - - [05/Jun/2025 07:46:35] "[35m[1mGET /data?ph=6.8&turbidity=2.0&chlorine=1.5&conductivity=400 HTTP/1.1[0m" 500 -
+2025-06-05 07:47:29,686 - werkzeug - INFO -  * Detected change in '/Users/juanfelipevoltolini/Documents/FIAP/Fase 4/GS1Sem/src/api/controller.py', reloading
+2025-06-05 07:47:29,819 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 07:47:31,284 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 07:47:31,330 - src.persistence.db - INFO - Tabela readings já existe
+2025-06-05 07:47:31,350 - src.persistence.db - INFO - Conexão com Oracle fechada
+2025-06-05 07:47:31,351 - __main__ - INFO - Controller ML inicializado com sucesso
+2025-06-05 07:47:31,363 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 07:47:31,370 - werkzeug - INFO -  * Debugger PIN: 122-358-257
+2025-06-05 07:47:40,712 - __main__ - INFO - [07:47:40] Dados recebidos do ESP32 - pH:6.8, Turbidez:2.0, Cloro:1.5, Condutividade:400.0
+2025-06-05 07:47:40,712 - __main__ - INFO - Enviando para sistema ML: {'ph': 6.8, 'turbidity': 2.0, 'chloramines': 1.5, 'conductivity': 400.0}
+2025-06-05 07:47:40,712 - src.api.controller - INFO - Processando leitura: {'ph': 6.8, 'turbidity': 2.0, 'chloramines': 1.5, 'conductivity': 400.0}
+2025-06-05 07:47:40,724 - src.model.predict - INFO - Modelo carregado com sucesso de: src/model/water_quality_model.pkl
+2025-06-05 07:47:40,729 - src.model.predict - INFO - Predição de sensor: NAO_POTAVEL (confiança: 0.535)
+2025-06-05 07:47:40,941 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 07:47:40,980 - src.persistence.db - INFO - Leitura salva: pH=6.8, Turbidez=2.0
+2025-06-05 07:47:40,980 - src.api.controller - INFO - Leitura processada: NAO_POTAVEL
+2025-06-05 07:47:40,980 - __main__ - INFO - ✅ Predição: NAO_POTAVEL (Confiança: 53.5%, Risco: UNKNOWN)
+2025-06-05 07:47:40,981 - __main__ - INFO - 💾 Dados salvos no banco Oracle com sucesso
+2025-06-05 07:47:40,981 - werkzeug - INFO - 192.168.1.16 - - [05/Jun/2025 07:47:40] "GET /data?ph=6.8&turbidity=2.0&chlorine=1.5&conductivity=400 HTTP/1.1" 200 -
+2025-06-05 07:47:49,263 - __main__ - INFO - [07:47:49] Dados recebidos do ESP32 - pH:6.2, Turbidez:1.5, Cloro:0.8, Condutividade:350.0
+2025-06-05 07:47:49,263 - __main__ - INFO - Enviando para sistema ML: {'ph': 6.2, 'turbidity': 1.5, 'chloramines': 0.8, 'conductivity': 350.0}
+2025-06-05 07:47:49,263 - src.api.controller - INFO - Processando leitura: {'ph': 6.2, 'turbidity': 1.5, 'chloramines': 0.8, 'conductivity': 350.0}
+2025-06-05 07:47:49,269 - src.model.predict - INFO - Predição de sensor: POTAVEL (confiança: 0.509)
+2025-06-05 07:47:49,311 - src.persistence.db - INFO - Leitura salva: pH=6.2, Turbidez=1.5
+2025-06-05 07:47:49,311 - src.api.controller - INFO - Leitura processada: POTAVEL
+2025-06-05 07:47:49,311 - __main__ - INFO - ✅ Predição: POTAVEL (Confiança: 50.9%, Risco: UNKNOWN)
+2025-06-05 07:47:49,311 - __main__ - INFO - 💾 Dados salvos no banco Oracle com sucesso
+2025-06-05 07:47:49,311 - werkzeug - INFO - 192.168.1.16 - - [05/Jun/2025 07:47:49] "GET /data?ph=6.2&turbidity=1.5&chlorine=0.8&conductivity=350 HTTP/1.1" 200 -
+2025-06-05 07:47:56,058 - __main__ - INFO - [07:47:56] Dados recebidos do ESP32 - pH:7.3, Turbidez:3.2, Cloro:1.8, Condutividade:450.0
+2025-06-05 07:47:56,058 - __main__ - INFO - Enviando para sistema ML: {'ph': 7.3, 'turbidity': 3.2, 'chloramines': 1.8, 'conductivity': 450.0}
+2025-06-05 07:47:56,058 - src.api.controller - INFO - Processando leitura: {'ph': 7.3, 'turbidity': 3.2, 'chloramines': 1.8, 'conductivity': 450.0}
+2025-06-05 07:47:56,063 - src.model.predict - INFO - Predição de sensor: NAO_POTAVEL (confiança: 0.535)
+2025-06-05 07:47:56,102 - src.persistence.db - INFO - Leitura salva: pH=7.3, Turbidez=3.2
+2025-06-05 07:47:56,102 - src.api.controller - INFO - Leitura processada: NAO_POTAVEL
+2025-06-05 07:47:56,102 - __main__ - INFO - ✅ Predição: NAO_POTAVEL (Confiança: 53.5%, Risco: UNKNOWN)
+2025-06-05 07:47:56,102 - __main__ - INFO - 💾 Dados salvos no banco Oracle com sucesso
+2025-06-05 07:47:56,102 - werkzeug - INFO - 192.168.1.16 - - [05/Jun/2025 07:47:56] "GET /data?ph=7.3&turbidity=3.2&chlorine=1.8&conductivity=450 HTTP/1.1" 200 -
+2025-06-05 07:48:02,592 - src.api.controller - INFO - Recuperadas 3 leituras
+2025-06-05 07:48:02,592 - werkzeug - INFO - 192.168.1.16 - - [05/Jun/2025 07:48:02] "GET /historico?limit=3 HTTP/1.1" 200 -
+2025-06-05 16:02:09,120 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 16:02:09,167 - src.persistence.db - INFO - Tabela readings já existe
+2025-06-05 16:02:09,187 - src.persistence.db - INFO - Conexão com Oracle fechada
+2025-06-05 16:02:09,188 - __main__ - INFO - Controller ML inicializado com sucesso
+2025-06-05 16:02:14,218 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8000
+ * Running on http://192.168.1.16:8000
+2025-06-05 16:02:14,218 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-05 16:02:14,220 - werkzeug - INFO -  * Restarting with stat
+2025-06-05 16:02:15,624 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 16:02:15,670 - src.persistence.db - INFO - Tabela readings já existe
+2025-06-05 16:02:15,690 - src.persistence.db - INFO - Conexão com Oracle fechada
+2025-06-05 16:02:15,694 - __main__ - INFO - Controller ML inicializado com sucesso
+2025-06-05 16:02:15,709 - werkzeug - WARNING -  * Debugger is active!
+2025-06-05 16:02:15,720 - werkzeug - INFO -  * Debugger PIN: 122-358-257
+2025-06-05 16:03:13,534 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 16:03:13] "GET / HTTP/1.1" 200 -
+2025-06-05 16:03:13,639 - werkzeug - INFO - 127.0.0.1 - - [05/Jun/2025 16:03:13] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -

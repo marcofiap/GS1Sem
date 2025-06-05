@@ -38,7 +38,9 @@ float phValue = 0.00;
 String waterPrediction = "STANDBY"; // Armazena a previsão do servidor
 
 // --- Endereço do Servidor Flask ---
-String serverName = "http://192.168.18.7:8000/data"; 
+// Para Wokwi local, use o IP da sua máquina na rede local
+// Para descobrir seu IP: Windows (ipconfig), Mac/Linux (ifconfig)
+String serverName = "http://192.168.1.16:8000/data"; // ✅ IP atualizado automaticamente
 
 // --- Função de Inicialização ---
 void setup() {
