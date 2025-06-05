@@ -363,3 +363,563 @@ Importância das Features:
 2025-06-04 08:37:13,501 - src.api.controller - INFO - Recuperadas 10 leituras
 2025-06-04 08:40:17,677 - src.api.controller - INFO - Recuperadas 10 leituras
 2025-06-04 08:40:22,181 - src.api.controller - INFO - Recuperados 10 alertas
+2025-06-04 20:07:01,772 - src.model.train - INFO - === INICIANDO TREINAMENTO DO MODELO ===
+2025-06-04 20:07:01,781 - src.processing.data_processor - INFO - Dados carregados: 3276 registros
+2025-06-04 20:07:01,783 - src.processing.data_processor - INFO - Valores ausentes antes da limpeza: 1434
+2025-06-04 20:07:01,786 - src.processing.data_processor - INFO - Preenchidos valores ausentes em ph com mediana 7.04
+2025-06-04 20:07:01,788 - src.processing.data_processor - INFO - Preenchidos valores ausentes em Sulfate com mediana 333.07
+2025-06-04 20:07:01,788 - src.processing.data_processor - INFO - Preenchidos valores ausentes em Trihalomethanes com mediana 66.62
+2025-06-04 20:07:01,789 - src.processing.data_processor - INFO - Valores ausentes após limpeza: 0
+2025-06-04 20:07:01,789 - src.processing.data_processor - INFO - Registros finais: 3276
+2025-06-04 20:07:01,789 - src.model.train - INFO - === INSIGHTS DOS DADOS ===
+2025-06-04 20:07:01,789 - src.model.train - INFO - Total de registros: 3276
+2025-06-04 20:07:01,789 - src.model.train - INFO - Água potável: 1278 (39.0%)
+2025-06-04 20:07:01,790 - src.model.train - INFO - Água não potável: 1998 (61.0%)
+2025-06-04 20:07:01,790 - src.model.train - INFO - 
+=== ESTATÍSTICAS DAS FEATURES ===
+2025-06-04 20:07:01,790 - src.model.train - INFO - ph: μ=7.07, σ=1.47, min=0.00, max=14.00
+2025-06-04 20:07:01,790 - src.model.train - INFO - Hardness: μ=196.37, σ=32.88, min=47.43, max=323.12
+2025-06-04 20:07:01,790 - src.model.train - INFO - Solids: μ=22014.09, σ=8768.57, min=320.94, max=61227.20
+2025-06-04 20:07:01,790 - src.model.train - INFO - Chloramines: μ=7.12, σ=1.58, min=0.35, max=13.13
+2025-06-04 20:07:01,790 - src.model.train - INFO - Sulfate: μ=333.61, σ=36.14, min=129.00, max=481.03
+2025-06-04 20:07:01,790 - src.model.train - INFO - Conductivity: μ=426.21, σ=80.82, min=181.48, max=753.34
+2025-06-04 20:07:01,790 - src.model.train - INFO - Organic_carbon: μ=14.28, σ=3.31, min=2.20, max=28.30
+2025-06-04 20:07:01,790 - src.model.train - INFO - Trihalomethanes: μ=66.41, σ=15.77, min=0.74, max=124.00
+2025-06-04 20:07:01,790 - src.model.train - INFO - Turbidity: μ=3.97, σ=0.78, min=1.45, max=6.74
+2025-06-04 20:07:01,790 - src.model.train - INFO - Iniciando treinamento do modelo
+2025-06-04 20:07:01,793 - src.processing.data_processor - INFO - Dados carregados: 3276 registros
+2025-06-04 20:07:01,793 - src.processing.data_processor - INFO - Valores ausentes antes da limpeza: 1434
+2025-06-04 20:07:01,795 - src.processing.data_processor - INFO - Preenchidos valores ausentes em ph com mediana 7.04
+2025-06-04 20:07:01,795 - src.processing.data_processor - INFO - Preenchidos valores ausentes em Sulfate com mediana 333.07
+2025-06-04 20:07:01,795 - src.processing.data_processor - INFO - Preenchidos valores ausentes em Trihalomethanes com mediana 66.62
+2025-06-04 20:07:01,796 - src.processing.data_processor - INFO - Valores ausentes após limpeza: 0
+2025-06-04 20:07:01,796 - src.processing.data_processor - INFO - Registros finais: 3276
+2025-06-04 20:07:01,796 - src.processing.data_processor - INFO - Features utilizadas: ['ph', 'Hardness', 'Solids', 'Chloramines', 'Sulfate', 'Conductivity', 'Organic_carbon', 'Trihalomethanes', 'Turbidity']
+2025-06-04 20:07:01,796 - src.processing.data_processor - INFO - Dividindo dados - Test size: 0.2
+2025-06-04 20:07:01,799 - src.processing.data_processor - INFO - Treino: 2620 amostras
+2025-06-04 20:07:01,799 - src.processing.data_processor - INFO - Teste: 656 amostras
+2025-06-04 20:07:01,799 - src.processing.data_processor - INFO - Normalizando features
+2025-06-04 20:07:01,799 - src.processing.data_processor - INFO - Features normalizadas - Train: (2620, 9)
+2025-06-04 20:07:01,799 - src.processing.data_processor - INFO - Features normalizadas - Test: (656, 9)
+2025-06-04 20:07:01,799 - src.model.train - INFO - Treinando modelo Random Forest
+2025-06-04 20:07:02,335 - src.model.train - INFO - Acurácia no treino: 0.9095
+2025-06-04 20:07:02,335 - src.model.train - INFO - Acurácia no teste: 0.6662
+2025-06-04 20:07:02,340 - src.model.train - INFO - 
+Relatório de Classificação:
+2025-06-04 20:07:02,342 - src.model.train - INFO - 
+              precision    recall  f1-score   support
+
+           0       0.69      0.83      0.75       400
+           1       0.61      0.41      0.49       256
+
+    accuracy                           0.67       656
+   macro avg       0.65      0.62      0.62       656
+weighted avg       0.66      0.67      0.65       656
+
+2025-06-04 20:07:02,342 - src.model.train - INFO - 
+Matriz de Confusão:
+2025-06-04 20:07:02,343 - src.model.train - INFO - 
+[[333  67]
+ [152 104]]
+2025-06-04 20:07:04,242 - src.model.train - INFO - Cross-validation scores: [0.65648855 0.69465649 0.66984733 0.62977099 0.63740458]
+2025-06-04 20:07:04,242 - src.model.train - INFO - CV Score médio: 0.6576 (+/- 0.0465)
+2025-06-04 20:07:04,246 - src.model.train - INFO - 
+Importância das Features:
+2025-06-04 20:07:04,246 - src.model.train - INFO - ph: 0.1628
+2025-06-04 20:07:04,246 - src.model.train - INFO - Hardness: 0.1224
+2025-06-04 20:07:04,246 - src.model.train - INFO - Solids: 0.1164
+2025-06-04 20:07:04,246 - src.model.train - INFO - Chloramines: 0.1145
+2025-06-04 20:07:04,246 - src.model.train - INFO - Sulfate: 0.1707
+2025-06-04 20:07:04,246 - src.model.train - INFO - Conductivity: 0.0870
+2025-06-04 20:07:04,246 - src.model.train - INFO - Organic_carbon: 0.0791
+2025-06-04 20:07:04,246 - src.model.train - INFO - Trihalomethanes: 0.0680
+2025-06-04 20:07:04,246 - src.model.train - INFO - Turbidity: 0.0792
+2025-06-04 20:07:04,266 - src.model.train - INFO - Modelo salvo em: src/model/water_quality_model.pkl
+2025-06-04 20:07:04,266 - src.model.train - INFO - === TREINAMENTO CONCLUÍDO COM SUCESSO ===
+2025-06-04 20:07:04,266 - src.model.train - INFO - Acurácia final no teste: 0.6662
+2025-06-04 20:07:21,322 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-04 20:07:21,404 - src.persistence.db - INFO - Tabela readings já existe
+2025-06-04 20:07:21,430 - src.persistence.db - INFO - Conexão com Oracle fechada
+2025-06-04 20:07:21,696 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-04 20:07:21,754 - src.api.controller - INFO - Recuperadas 10 leituras
+2025-06-04 20:07:21,806 - src.api.controller - INFO - Recuperados 10 alertas
+2025-06-04 20:07:21,807 - src.api.controller - INFO - Estatísticas calculadas: 10 leituras, 0 potáveis
+2025-06-04 20:07:22,016 - src.api.controller - INFO - Recuperadas 10 leituras
+2025-06-04 20:22:06,570 - src.api.controller - ERROR - Erro ao recuperar leituras: [Errno 32] Broken pipe
+2025-06-04 20:22:06,586 - src.persistence.db - ERROR - Erro ao executar query: DPY-4011: the database or network closed the connection
+[Errno 32] Broken pipe
+Help: https://python-oracledb.readthedocs.io/en/latest/user_guide/troubleshooting.html#dpy-4011
+2025-06-04 20:22:06,587 - src.api.controller - INFO - Recuperadas 0 leituras
+2025-06-04 20:22:55,346 - src.api.controller - ERROR - Erro ao recuperar alertas: 'NoneType' object has no attribute 'send'
+2025-06-04 20:22:59,478 - src.api.controller - ERROR - Erro ao recuperar leituras: 'NoneType' object has no attribute 'send'
+2025-06-04 20:24:18,200 - src.model.train - INFO - === INICIANDO TREINAMENTO DO MODELO ===
+2025-06-04 20:24:18,208 - src.processing.data_processor - INFO - Dados carregados: 3276 registros
+2025-06-04 20:24:18,212 - src.processing.data_processor - INFO - Valores ausentes antes da limpeza: 1434
+2025-06-04 20:24:18,215 - src.processing.data_processor - INFO - Preenchidos valores ausentes em ph com mediana 7.04
+2025-06-04 20:24:18,216 - src.processing.data_processor - INFO - Preenchidos valores ausentes em Sulfate com mediana 333.07
+2025-06-04 20:24:18,216 - src.processing.data_processor - INFO - Preenchidos valores ausentes em Trihalomethanes com mediana 66.62
+2025-06-04 20:24:18,216 - src.processing.data_processor - INFO - Valores ausentes após limpeza: 0
+2025-06-04 20:24:18,216 - src.processing.data_processor - INFO - Registros finais: 3276
+2025-06-04 20:24:18,217 - src.model.train - INFO - === INSIGHTS DOS DADOS ===
+2025-06-04 20:24:18,217 - src.model.train - INFO - Total de registros: 3276
+2025-06-04 20:24:18,217 - src.model.train - INFO - Água potável: 1278 (39.0%)
+2025-06-04 20:24:18,217 - src.model.train - INFO - Água não potável: 1998 (61.0%)
+2025-06-04 20:24:18,217 - src.model.train - INFO - 
+=== ESTATÍSTICAS DAS FEATURES ===
+2025-06-04 20:24:18,217 - src.model.train - INFO - ph: μ=7.07, σ=1.47, min=0.00, max=14.00
+2025-06-04 20:24:18,217 - src.model.train - INFO - Hardness: μ=196.37, σ=32.88, min=47.43, max=323.12
+2025-06-04 20:24:18,217 - src.model.train - INFO - Solids: μ=22014.09, σ=8768.57, min=320.94, max=61227.20
+2025-06-04 20:24:18,217 - src.model.train - INFO - Chloramines: μ=7.12, σ=1.58, min=0.35, max=13.13
+2025-06-04 20:24:18,217 - src.model.train - INFO - Sulfate: μ=333.61, σ=36.14, min=129.00, max=481.03
+2025-06-04 20:24:18,217 - src.model.train - INFO - Conductivity: μ=426.21, σ=80.82, min=181.48, max=753.34
+2025-06-04 20:24:18,217 - src.model.train - INFO - Organic_carbon: μ=14.28, σ=3.31, min=2.20, max=28.30
+2025-06-04 20:24:18,217 - src.model.train - INFO - Trihalomethanes: μ=66.41, σ=15.77, min=0.74, max=124.00
+2025-06-04 20:24:18,217 - src.model.train - INFO - Turbidity: μ=3.97, σ=0.78, min=1.45, max=6.74
+2025-06-04 20:24:18,217 - src.model.train - INFO - Iniciando treinamento do modelo
+2025-06-04 20:24:18,220 - src.processing.data_processor - INFO - Dados carregados: 3276 registros
+2025-06-04 20:24:18,221 - src.processing.data_processor - INFO - Valores ausentes antes da limpeza: 1434
+2025-06-04 20:24:18,221 - src.processing.data_processor - INFO - Preenchidos valores ausentes em ph com mediana 7.04
+2025-06-04 20:24:18,222 - src.processing.data_processor - INFO - Preenchidos valores ausentes em Sulfate com mediana 333.07
+2025-06-04 20:24:18,223 - src.processing.data_processor - INFO - Preenchidos valores ausentes em Trihalomethanes com mediana 66.62
+2025-06-04 20:24:18,223 - src.processing.data_processor - INFO - Valores ausentes após limpeza: 0
+2025-06-04 20:24:18,223 - src.processing.data_processor - INFO - Registros finais: 3276
+2025-06-04 20:24:18,223 - src.processing.data_processor - INFO - Features utilizadas: ['ph', 'Hardness', 'Solids', 'Chloramines', 'Sulfate', 'Conductivity', 'Organic_carbon', 'Trihalomethanes', 'Turbidity']
+2025-06-04 20:24:18,223 - src.processing.data_processor - INFO - Dividindo dados - Test size: 0.2
+2025-06-04 20:24:18,226 - src.processing.data_processor - INFO - Treino: 2620 amostras
+2025-06-04 20:24:18,226 - src.processing.data_processor - INFO - Teste: 656 amostras
+2025-06-04 20:24:18,226 - src.processing.data_processor - INFO - Normalizando features
+2025-06-04 20:24:18,226 - src.processing.data_processor - INFO - Features normalizadas - Train: (2620, 9)
+2025-06-04 20:24:18,226 - src.processing.data_processor - INFO - Features normalizadas - Test: (656, 9)
+2025-06-04 20:24:18,226 - src.model.train - INFO - Treinando modelo Random Forest
+2025-06-04 20:24:18,731 - src.model.train - INFO - Acurácia no treino: 0.9095
+2025-06-04 20:24:18,731 - src.model.train - INFO - Acurácia no teste: 0.6662
+2025-06-04 20:24:18,736 - src.model.train - INFO - 
+Relatório de Classificação:
+2025-06-04 20:24:18,739 - src.model.train - INFO - 
+              precision    recall  f1-score   support
+
+           0       0.69      0.83      0.75       400
+           1       0.61      0.41      0.49       256
+
+    accuracy                           0.67       656
+   macro avg       0.65      0.62      0.62       656
+weighted avg       0.66      0.67      0.65       656
+
+2025-06-04 20:24:18,739 - src.model.train - INFO - 
+Matriz de Confusão:
+2025-06-04 20:24:18,739 - src.model.train - INFO - 
+[[333  67]
+ [152 104]]
+2025-06-04 20:24:20,550 - src.model.train - INFO - Cross-validation scores: [0.65648855 0.69465649 0.66984733 0.62977099 0.63740458]
+2025-06-04 20:24:20,551 - src.model.train - INFO - CV Score médio: 0.6576 (+/- 0.0465)
+2025-06-04 20:24:20,553 - src.model.train - INFO - 
+Importância das Features:
+2025-06-04 20:24:20,553 - src.model.train - INFO - ph: 0.1628
+2025-06-04 20:24:20,553 - src.model.train - INFO - Hardness: 0.1224
+2025-06-04 20:24:20,553 - src.model.train - INFO - Solids: 0.1164
+2025-06-04 20:24:20,553 - src.model.train - INFO - Chloramines: 0.1145
+2025-06-04 20:24:20,553 - src.model.train - INFO - Sulfate: 0.1707
+2025-06-04 20:24:20,553 - src.model.train - INFO - Conductivity: 0.0870
+2025-06-04 20:24:20,553 - src.model.train - INFO - Organic_carbon: 0.0791
+2025-06-04 20:24:20,553 - src.model.train - INFO - Trihalomethanes: 0.0680
+2025-06-04 20:24:20,553 - src.model.train - INFO - Turbidity: 0.0792
+2025-06-04 20:24:20,569 - src.model.train - INFO - Modelo salvo em: src/model/water_quality_model.pkl
+2025-06-04 20:24:20,569 - src.model.train - INFO - === TREINAMENTO CONCLUÍDO COM SUCESSO ===
+2025-06-04 20:24:20,569 - src.model.train - INFO - Acurácia final no teste: 0.6662
+2025-06-04 20:31:40,750 - src.model.train - INFO - === INICIANDO TREINAMENTO DO MODELO ===
+2025-06-04 20:31:40,759 - src.processing.data_processor - INFO - Dados carregados: 3276 registros
+2025-06-04 20:31:40,762 - src.processing.data_processor - INFO - Valores ausentes antes da limpeza: 1434
+2025-06-04 20:31:40,765 - src.processing.data_processor - INFO - Preenchidos valores ausentes em ph com mediana 7.04
+2025-06-04 20:31:40,765 - src.processing.data_processor - INFO - Preenchidos valores ausentes em Sulfate com mediana 333.07
+2025-06-04 20:31:40,766 - src.processing.data_processor - INFO - Preenchidos valores ausentes em Trihalomethanes com mediana 66.62
+2025-06-04 20:31:40,766 - src.processing.data_processor - INFO - Valores ausentes após limpeza: 0
+2025-06-04 20:31:40,766 - src.processing.data_processor - INFO - Registros finais: 3276
+2025-06-04 20:31:40,767 - src.model.train - INFO - === INSIGHTS DOS DADOS ===
+2025-06-04 20:31:40,767 - src.model.train - INFO - Total de registros: 3276
+2025-06-04 20:31:40,767 - src.model.train - INFO - Água potável: 1278 (39.0%)
+2025-06-04 20:31:40,767 - src.model.train - INFO - Água não potável: 1998 (61.0%)
+2025-06-04 20:31:40,767 - src.model.train - INFO - 
+=== ESTATÍSTICAS DAS FEATURES ===
+2025-06-04 20:31:40,767 - src.model.train - INFO - ph: μ=7.07, σ=1.47, min=0.00, max=14.00
+2025-06-04 20:31:40,767 - src.model.train - INFO - Hardness: μ=196.37, σ=32.88, min=47.43, max=323.12
+2025-06-04 20:31:40,767 - src.model.train - INFO - Solids: μ=22014.09, σ=8768.57, min=320.94, max=61227.20
+2025-06-04 20:31:40,767 - src.model.train - INFO - Chloramines: μ=7.12, σ=1.58, min=0.35, max=13.13
+2025-06-04 20:31:40,767 - src.model.train - INFO - Sulfate: μ=333.61, σ=36.14, min=129.00, max=481.03
+2025-06-04 20:31:40,767 - src.model.train - INFO - Conductivity: μ=426.21, σ=80.82, min=181.48, max=753.34
+2025-06-04 20:31:40,767 - src.model.train - INFO - Organic_carbon: μ=14.28, σ=3.31, min=2.20, max=28.30
+2025-06-04 20:31:40,767 - src.model.train - INFO - Trihalomethanes: μ=66.41, σ=15.77, min=0.74, max=124.00
+2025-06-04 20:31:40,767 - src.model.train - INFO - Turbidity: μ=3.97, σ=0.78, min=1.45, max=6.74
+2025-06-04 20:31:40,767 - src.model.train - INFO - Iniciando treinamento do modelo
+2025-06-04 20:31:40,770 - src.processing.data_processor - INFO - Dados carregados: 3276 registros
+2025-06-04 20:31:40,770 - src.processing.data_processor - INFO - Valores ausentes antes da limpeza: 1434
+2025-06-04 20:31:40,771 - src.processing.data_processor - INFO - Preenchidos valores ausentes em ph com mediana 7.04
+2025-06-04 20:31:40,771 - src.processing.data_processor - INFO - Preenchidos valores ausentes em Sulfate com mediana 333.07
+2025-06-04 20:31:40,772 - src.processing.data_processor - INFO - Preenchidos valores ausentes em Trihalomethanes com mediana 66.62
+2025-06-04 20:31:40,772 - src.processing.data_processor - INFO - Valores ausentes após limpeza: 0
+2025-06-04 20:31:40,772 - src.processing.data_processor - INFO - Registros finais: 3276
+2025-06-04 20:31:40,772 - src.processing.data_processor - INFO - Features utilizadas: ['ph', 'Hardness', 'Solids', 'Chloramines', 'Sulfate', 'Conductivity', 'Organic_carbon', 'Trihalomethanes', 'Turbidity']
+2025-06-04 20:31:40,772 - src.processing.data_processor - INFO - Dividindo dados - Test size: 0.2
+2025-06-04 20:31:40,775 - src.processing.data_processor - INFO - Treino: 2620 amostras
+2025-06-04 20:31:40,775 - src.processing.data_processor - INFO - Teste: 656 amostras
+2025-06-04 20:31:40,775 - src.processing.data_processor - INFO - Normalizando features
+2025-06-04 20:31:40,775 - src.processing.data_processor - INFO - Features normalizadas - Train: (2620, 9)
+2025-06-04 20:31:40,775 - src.processing.data_processor - INFO - Features normalizadas - Test: (656, 9)
+2025-06-04 20:31:40,776 - src.model.train - INFO - Treinando modelo Random Forest
+2025-06-04 20:31:41,221 - src.model.train - INFO - Acurácia no treino: 0.9095
+2025-06-04 20:31:41,222 - src.model.train - INFO - Acurácia no teste: 0.6662
+2025-06-04 20:31:41,227 - src.model.train - INFO - 
+Relatório de Classificação:
+2025-06-04 20:31:41,229 - src.model.train - INFO - 
+              precision    recall  f1-score   support
+
+           0       0.69      0.83      0.75       400
+           1       0.61      0.41      0.49       256
+
+    accuracy                           0.67       656
+   macro avg       0.65      0.62      0.62       656
+weighted avg       0.66      0.67      0.65       656
+
+2025-06-04 20:31:41,229 - src.model.train - INFO - 
+Matriz de Confusão:
+2025-06-04 20:31:41,230 - src.model.train - INFO - 
+[[333  67]
+ [152 104]]
+2025-06-04 20:31:42,992 - src.model.train - INFO - Cross-validation scores: [0.65648855 0.69465649 0.66984733 0.62977099 0.63740458]
+2025-06-04 20:31:42,992 - src.model.train - INFO - CV Score médio: 0.6576 (+/- 0.0465)
+2025-06-04 20:31:42,996 - src.model.train - INFO - 
+Importância das Features:
+2025-06-04 20:31:42,996 - src.model.train - INFO - ph: 0.1628
+2025-06-04 20:31:42,996 - src.model.train - INFO - Hardness: 0.1224
+2025-06-04 20:31:42,996 - src.model.train - INFO - Solids: 0.1164
+2025-06-04 20:31:42,996 - src.model.train - INFO - Chloramines: 0.1145
+2025-06-04 20:31:42,996 - src.model.train - INFO - Sulfate: 0.1707
+2025-06-04 20:31:42,996 - src.model.train - INFO - Conductivity: 0.0870
+2025-06-04 20:31:42,996 - src.model.train - INFO - Organic_carbon: 0.0791
+2025-06-04 20:31:42,996 - src.model.train - INFO - Trihalomethanes: 0.0680
+2025-06-04 20:31:42,996 - src.model.train - INFO - Turbidity: 0.0792
+2025-06-04 20:31:43,010 - src.model.train - INFO - Modelo salvo em: src/model/water_quality_model.pkl
+2025-06-04 20:31:43,010 - src.model.train - INFO - === TREINAMENTO CONCLUÍDO COM SUCESSO ===
+2025-06-04 20:31:43,011 - src.model.train - INFO - Acurácia final no teste: 0.6662
+2025-06-04 20:45:32,654 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-04 20:45:32,713 - src.persistence.db - INFO - Tabela readings já existe
+2025-06-04 20:45:32,736 - src.persistence.db - INFO - Conexão com Oracle fechada
+2025-06-04 20:45:33,008 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-04 20:45:33,061 - src.api.controller - INFO - Recuperadas 10 leituras
+2025-06-04 20:45:33,146 - src.api.controller - INFO - Recuperados 10 alertas
+2025-06-04 20:45:33,146 - src.api.controller - INFO - Estatísticas calculadas: 10 leituras, 0 potáveis
+2025-06-04 20:45:33,209 - src.api.controller - INFO - Recuperadas 10 leituras
+2025-06-04 20:59:41,601 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-04 20:59:41,657 - src.persistence.db - INFO - Tabela readings já existe
+2025-06-04 20:59:41,680 - src.persistence.db - INFO - Conexão com Oracle fechada
+2025-06-04 20:59:41,963 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-04 20:59:42,034 - src.api.controller - INFO - Recuperadas 10 leituras
+2025-06-04 20:59:42,090 - src.api.controller - INFO - Recuperados 10 alertas
+2025-06-04 20:59:42,091 - src.api.controller - INFO - Estatísticas calculadas: 10 leituras, 0 potáveis
+2025-06-04 20:59:42,155 - src.api.controller - INFO - Recuperadas 10 leituras
+2025-06-04 21:44:20,124 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-04 21:44:20,195 - src.persistence.db - INFO - Tabela readings já existe
+2025-06-04 21:44:20,226 - src.persistence.db - INFO - Conexão com Oracle fechada
+2025-06-04 21:44:20,507 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-04 21:44:20,559 - src.api.controller - INFO - Recuperadas 10 leituras
+2025-06-04 21:44:20,611 - src.api.controller - INFO - Recuperados 10 alertas
+2025-06-04 21:44:20,611 - src.api.controller - INFO - Estatísticas calculadas: 10 leituras, 0 potáveis
+2025-06-04 21:44:20,694 - src.api.controller - INFO - Recuperadas 10 leituras
+2025-06-04 22:06:04,268 - src.model.train - INFO - === INICIANDO TREINAMENTO DO MODELO ===
+2025-06-04 22:06:04,276 - src.processing.data_processor - INFO - Dados carregados: 3276 registros
+2025-06-04 22:06:04,279 - src.processing.data_processor - INFO - Valores ausentes antes da limpeza: 1434
+2025-06-04 22:06:04,281 - src.processing.data_processor - INFO - Preenchidos valores ausentes em ph com mediana 7.04
+2025-06-04 22:06:04,282 - src.processing.data_processor - INFO - Preenchidos valores ausentes em Sulfate com mediana 333.07
+2025-06-04 22:06:04,282 - src.processing.data_processor - INFO - Preenchidos valores ausentes em Trihalomethanes com mediana 66.62
+2025-06-04 22:06:04,282 - src.processing.data_processor - INFO - Valores ausentes após limpeza: 0
+2025-06-04 22:06:04,282 - src.processing.data_processor - INFO - Registros finais: 3276
+2025-06-04 22:06:04,284 - src.model.train - INFO - === INSIGHTS DOS DADOS ===
+2025-06-04 22:06:04,284 - src.model.train - INFO - Total de registros: 3276
+2025-06-04 22:06:04,284 - src.model.train - INFO - Água potável: 1278 (39.0%)
+2025-06-04 22:06:04,284 - src.model.train - INFO - Água não potável: 1998 (61.0%)
+2025-06-04 22:06:04,284 - src.model.train - INFO - 
+=== ESTATÍSTICAS DAS FEATURES ===
+2025-06-04 22:06:04,284 - src.model.train - INFO - ph: μ=7.07, σ=1.47, min=0.00, max=14.00
+2025-06-04 22:06:04,284 - src.model.train - INFO - Hardness: μ=196.37, σ=32.88, min=47.43, max=323.12
+2025-06-04 22:06:04,284 - src.model.train - INFO - Solids: μ=22014.09, σ=8768.57, min=320.94, max=61227.20
+2025-06-04 22:06:04,284 - src.model.train - INFO - Chloramines: μ=7.12, σ=1.58, min=0.35, max=13.13
+2025-06-04 22:06:04,284 - src.model.train - INFO - Sulfate: μ=333.61, σ=36.14, min=129.00, max=481.03
+2025-06-04 22:06:04,284 - src.model.train - INFO - Conductivity: μ=426.21, σ=80.82, min=181.48, max=753.34
+2025-06-04 22:06:04,284 - src.model.train - INFO - Organic_carbon: μ=14.28, σ=3.31, min=2.20, max=28.30
+2025-06-04 22:06:04,284 - src.model.train - INFO - Trihalomethanes: μ=66.41, σ=15.77, min=0.74, max=124.00
+2025-06-04 22:06:04,284 - src.model.train - INFO - Turbidity: μ=3.97, σ=0.78, min=1.45, max=6.74
+2025-06-04 22:06:04,285 - src.model.train - INFO - Iniciando treinamento do modelo
+2025-06-04 22:06:04,288 - src.processing.data_processor - INFO - Dados carregados: 3276 registros
+2025-06-04 22:06:04,288 - src.processing.data_processor - INFO - Valores ausentes antes da limpeza: 1434
+2025-06-04 22:06:04,291 - src.processing.data_processor - INFO - Preenchidos valores ausentes em ph com mediana 7.04
+2025-06-04 22:06:04,291 - src.processing.data_processor - INFO - Preenchidos valores ausentes em Sulfate com mediana 333.07
+2025-06-04 22:06:04,292 - src.processing.data_processor - INFO - Preenchidos valores ausentes em Trihalomethanes com mediana 66.62
+2025-06-04 22:06:04,292 - src.processing.data_processor - INFO - Valores ausentes após limpeza: 0
+2025-06-04 22:06:04,292 - src.processing.data_processor - INFO - Registros finais: 3276
+2025-06-04 22:06:04,292 - src.processing.data_processor - INFO - Features utilizadas: ['ph', 'Hardness', 'Solids', 'Chloramines', 'Sulfate', 'Conductivity', 'Organic_carbon', 'Trihalomethanes', 'Turbidity']
+2025-06-04 22:06:04,292 - src.processing.data_processor - INFO - Dividindo dados - Test size: 0.2
+2025-06-04 22:06:04,296 - src.processing.data_processor - INFO - Treino: 2620 amostras
+2025-06-04 22:06:04,296 - src.processing.data_processor - INFO - Teste: 656 amostras
+2025-06-04 22:06:04,296 - src.processing.data_processor - INFO - Normalizando features
+2025-06-04 22:06:04,296 - src.processing.data_processor - INFO - Features normalizadas - Train: (2620, 9)
+2025-06-04 22:06:04,296 - src.processing.data_processor - INFO - Features normalizadas - Test: (656, 9)
+2025-06-04 22:06:04,296 - src.model.train - INFO - Treinando modelo Random Forest
+2025-06-04 22:06:04,768 - src.model.train - INFO - Acurácia no treino: 0.9095
+2025-06-04 22:06:04,768 - src.model.train - INFO - Acurácia no teste: 0.6662
+2025-06-04 22:06:04,773 - src.model.train - INFO - 
+Relatório de Classificação:
+2025-06-04 22:06:04,777 - src.model.train - INFO - 
+              precision    recall  f1-score   support
+
+           0       0.69      0.83      0.75       400
+           1       0.61      0.41      0.49       256
+
+    accuracy                           0.67       656
+   macro avg       0.65      0.62      0.62       656
+weighted avg       0.66      0.67      0.65       656
+
+2025-06-04 22:06:04,777 - src.model.train - INFO - 
+Matriz de Confusão:
+2025-06-04 22:06:04,778 - src.model.train - INFO - 
+[[333  67]
+ [152 104]]
+2025-06-04 22:06:06,729 - src.model.train - INFO - Cross-validation scores: [0.65648855 0.69465649 0.66984733 0.62977099 0.63740458]
+2025-06-04 22:06:06,730 - src.model.train - INFO - CV Score médio: 0.6576 (+/- 0.0465)
+2025-06-04 22:06:06,732 - src.model.train - INFO - 
+Importância das Features:
+2025-06-04 22:06:06,732 - src.model.train - INFO - ph: 0.1628
+2025-06-04 22:06:06,732 - src.model.train - INFO - Hardness: 0.1224
+2025-06-04 22:06:06,732 - src.model.train - INFO - Solids: 0.1164
+2025-06-04 22:06:06,732 - src.model.train - INFO - Chloramines: 0.1145
+2025-06-04 22:06:06,732 - src.model.train - INFO - Sulfate: 0.1707
+2025-06-04 22:06:06,732 - src.model.train - INFO - Conductivity: 0.0870
+2025-06-04 22:06:06,732 - src.model.train - INFO - Organic_carbon: 0.0791
+2025-06-04 22:06:06,732 - src.model.train - INFO - Trihalomethanes: 0.0680
+2025-06-04 22:06:06,732 - src.model.train - INFO - Turbidity: 0.0792
+2025-06-04 22:06:06,748 - src.model.train - INFO - Modelo salvo em: src/model/water_quality_model.pkl
+2025-06-04 22:06:06,748 - src.model.train - INFO - === TREINAMENTO CONCLUÍDO COM SUCESSO ===
+2025-06-04 22:06:06,748 - src.model.train - INFO - Acurácia final no teste: 0.6662
+2025-06-04 22:06:11,699 - src.model.train - INFO - === INICIANDO TREINAMENTO DO MODELO ===
+2025-06-04 22:06:11,704 - src.processing.data_processor - INFO - Dados carregados: 3276 registros
+2025-06-04 22:06:11,704 - src.processing.data_processor - INFO - Valores ausentes antes da limpeza: 1434
+2025-06-04 22:06:11,705 - src.processing.data_processor - INFO - Preenchidos valores ausentes em ph com mediana 7.04
+2025-06-04 22:06:11,706 - src.processing.data_processor - INFO - Preenchidos valores ausentes em Sulfate com mediana 333.07
+2025-06-04 22:06:11,706 - src.processing.data_processor - INFO - Preenchidos valores ausentes em Trihalomethanes com mediana 66.62
+2025-06-04 22:06:11,707 - src.processing.data_processor - INFO - Valores ausentes após limpeza: 0
+2025-06-04 22:06:11,707 - src.processing.data_processor - INFO - Registros finais: 3276
+2025-06-04 22:06:11,708 - src.model.train - INFO - === INSIGHTS DOS DADOS ===
+2025-06-04 22:06:11,708 - src.model.train - INFO - Total de registros: 3276
+2025-06-04 22:06:11,708 - src.model.train - INFO - Água potável: 1278 (39.0%)
+2025-06-04 22:06:11,708 - src.model.train - INFO - Água não potável: 1998 (61.0%)
+2025-06-04 22:06:11,708 - src.model.train - INFO - 
+=== ESTATÍSTICAS DAS FEATURES ===
+2025-06-04 22:06:11,708 - src.model.train - INFO - ph: μ=7.07, σ=1.47, min=0.00, max=14.00
+2025-06-04 22:06:11,708 - src.model.train - INFO - Hardness: μ=196.37, σ=32.88, min=47.43, max=323.12
+2025-06-04 22:06:11,708 - src.model.train - INFO - Solids: μ=22014.09, σ=8768.57, min=320.94, max=61227.20
+2025-06-04 22:06:11,708 - src.model.train - INFO - Chloramines: μ=7.12, σ=1.58, min=0.35, max=13.13
+2025-06-04 22:06:11,708 - src.model.train - INFO - Sulfate: μ=333.61, σ=36.14, min=129.00, max=481.03
+2025-06-04 22:06:11,708 - src.model.train - INFO - Conductivity: μ=426.21, σ=80.82, min=181.48, max=753.34
+2025-06-04 22:06:11,708 - src.model.train - INFO - Organic_carbon: μ=14.28, σ=3.31, min=2.20, max=28.30
+2025-06-04 22:06:11,708 - src.model.train - INFO - Trihalomethanes: μ=66.41, σ=15.77, min=0.74, max=124.00
+2025-06-04 22:06:11,708 - src.model.train - INFO - Turbidity: μ=3.97, σ=0.78, min=1.45, max=6.74
+2025-06-04 22:06:11,708 - src.model.train - INFO - Iniciando treinamento do modelo
+2025-06-04 22:06:11,713 - src.processing.data_processor - INFO - Dados carregados: 3276 registros
+2025-06-04 22:06:11,713 - src.processing.data_processor - INFO - Valores ausentes antes da limpeza: 1434
+2025-06-04 22:06:11,714 - src.processing.data_processor - INFO - Preenchidos valores ausentes em ph com mediana 7.04
+2025-06-04 22:06:11,714 - src.processing.data_processor - INFO - Preenchidos valores ausentes em Sulfate com mediana 333.07
+2025-06-04 22:06:11,715 - src.processing.data_processor - INFO - Preenchidos valores ausentes em Trihalomethanes com mediana 66.62
+2025-06-04 22:06:11,715 - src.processing.data_processor - INFO - Valores ausentes após limpeza: 0
+2025-06-04 22:06:11,715 - src.processing.data_processor - INFO - Registros finais: 3276
+2025-06-04 22:06:11,715 - src.processing.data_processor - INFO - Features utilizadas: ['ph', 'Hardness', 'Solids', 'Chloramines', 'Sulfate', 'Conductivity', 'Organic_carbon', 'Trihalomethanes', 'Turbidity']
+2025-06-04 22:06:11,715 - src.processing.data_processor - INFO - Dividindo dados - Test size: 0.2
+2025-06-04 22:06:11,716 - src.processing.data_processor - INFO - Treino: 2620 amostras
+2025-06-04 22:06:11,716 - src.processing.data_processor - INFO - Teste: 656 amostras
+2025-06-04 22:06:11,716 - src.processing.data_processor - INFO - Normalizando features
+2025-06-04 22:06:11,717 - src.processing.data_processor - INFO - Features normalizadas - Train: (2620, 9)
+2025-06-04 22:06:11,717 - src.processing.data_processor - INFO - Features normalizadas - Test: (656, 9)
+2025-06-04 22:06:11,717 - src.model.train - INFO - Treinando modelo Random Forest
+2025-06-04 22:06:12,207 - src.model.train - INFO - Acurácia no treino: 0.9095
+2025-06-04 22:06:12,207 - src.model.train - INFO - Acurácia no teste: 0.6662
+2025-06-04 22:06:12,213 - src.model.train - INFO - 
+Relatório de Classificação:
+2025-06-04 22:06:12,215 - src.model.train - INFO - 
+              precision    recall  f1-score   support
+
+           0       0.69      0.83      0.75       400
+           1       0.61      0.41      0.49       256
+
+    accuracy                           0.67       656
+   macro avg       0.65      0.62      0.62       656
+weighted avg       0.66      0.67      0.65       656
+
+2025-06-04 22:06:12,215 - src.model.train - INFO - 
+Matriz de Confusão:
+2025-06-04 22:06:12,215 - src.model.train - INFO - 
+[[333  67]
+ [152 104]]
+2025-06-04 22:06:14,141 - src.model.train - INFO - Cross-validation scores: [0.65648855 0.69465649 0.66984733 0.62977099 0.63740458]
+2025-06-04 22:06:14,141 - src.model.train - INFO - CV Score médio: 0.6576 (+/- 0.0465)
+2025-06-04 22:06:14,143 - src.model.train - INFO - 
+Importância das Features:
+2025-06-04 22:06:14,143 - src.model.train - INFO - ph: 0.1628
+2025-06-04 22:06:14,144 - src.model.train - INFO - Hardness: 0.1224
+2025-06-04 22:06:14,144 - src.model.train - INFO - Solids: 0.1164
+2025-06-04 22:06:14,144 - src.model.train - INFO - Chloramines: 0.1145
+2025-06-04 22:06:14,144 - src.model.train - INFO - Sulfate: 0.1707
+2025-06-04 22:06:14,144 - src.model.train - INFO - Conductivity: 0.0870
+2025-06-04 22:06:14,144 - src.model.train - INFO - Organic_carbon: 0.0791
+2025-06-04 22:06:14,144 - src.model.train - INFO - Trihalomethanes: 0.0680
+2025-06-04 22:06:14,144 - src.model.train - INFO - Turbidity: 0.0792
+2025-06-04 22:06:14,159 - src.model.train - INFO - Modelo salvo em: src/model/water_quality_model.pkl
+2025-06-04 22:06:14,159 - src.model.train - INFO - === TREINAMENTO CONCLUÍDO COM SUCESSO ===
+2025-06-04 22:06:14,159 - src.model.train - INFO - Acurácia final no teste: 0.6662
+2025-06-04 22:09:16,395 - src.model.train - INFO - === INICIANDO TREINAMENTO DO MODELO ===
+2025-06-04 22:09:16,404 - src.processing.data_processor - INFO - Dados carregados: 3276 registros
+2025-06-04 22:09:16,408 - src.processing.data_processor - INFO - Valores ausentes antes da limpeza: 1434
+2025-06-04 22:09:16,411 - src.processing.data_processor - INFO - Preenchidos valores ausentes em ph com mediana 7.04
+2025-06-04 22:09:16,411 - src.processing.data_processor - INFO - Preenchidos valores ausentes em Sulfate com mediana 333.07
+2025-06-04 22:09:16,412 - src.processing.data_processor - INFO - Preenchidos valores ausentes em Trihalomethanes com mediana 66.62
+2025-06-04 22:09:16,412 - src.processing.data_processor - INFO - Valores ausentes após limpeza: 0
+2025-06-04 22:09:16,412 - src.processing.data_processor - INFO - Registros finais: 3276
+2025-06-04 22:09:16,413 - src.model.train - INFO - === INSIGHTS DOS DADOS ===
+2025-06-04 22:09:16,413 - src.model.train - INFO - Total de registros: 3276
+2025-06-04 22:09:16,413 - src.model.train - INFO - Água potável: 1278 (39.0%)
+2025-06-04 22:09:16,413 - src.model.train - INFO - Água não potável: 1998 (61.0%)
+2025-06-04 22:09:16,413 - src.model.train - INFO - 
+=== ESTATÍSTICAS DAS FEATURES ===
+2025-06-04 22:09:16,413 - src.model.train - INFO - ph: μ=7.07, σ=1.47, min=0.00, max=14.00
+2025-06-04 22:09:16,413 - src.model.train - INFO - Hardness: μ=196.37, σ=32.88, min=47.43, max=323.12
+2025-06-04 22:09:16,413 - src.model.train - INFO - Solids: μ=22014.09, σ=8768.57, min=320.94, max=61227.20
+2025-06-04 22:09:16,413 - src.model.train - INFO - Chloramines: μ=7.12, σ=1.58, min=0.35, max=13.13
+2025-06-04 22:09:16,413 - src.model.train - INFO - Sulfate: μ=333.61, σ=36.14, min=129.00, max=481.03
+2025-06-04 22:09:16,413 - src.model.train - INFO - Conductivity: μ=426.21, σ=80.82, min=181.48, max=753.34
+2025-06-04 22:09:16,413 - src.model.train - INFO - Organic_carbon: μ=14.28, σ=3.31, min=2.20, max=28.30
+2025-06-04 22:09:16,413 - src.model.train - INFO - Trihalomethanes: μ=66.41, σ=15.77, min=0.74, max=124.00
+2025-06-04 22:09:16,413 - src.model.train - INFO - Turbidity: μ=3.97, σ=0.78, min=1.45, max=6.74
+2025-06-04 22:09:16,413 - src.model.train - INFO - Iniciando treinamento do modelo
+2025-06-04 22:09:16,417 - src.processing.data_processor - INFO - Dados carregados: 3276 registros
+2025-06-04 22:09:16,418 - src.processing.data_processor - INFO - Valores ausentes antes da limpeza: 1434
+2025-06-04 22:09:16,419 - src.processing.data_processor - INFO - Preenchidos valores ausentes em ph com mediana 7.04
+2025-06-04 22:09:16,419 - src.processing.data_processor - INFO - Preenchidos valores ausentes em Sulfate com mediana 333.07
+2025-06-04 22:09:16,421 - src.processing.data_processor - INFO - Preenchidos valores ausentes em Trihalomethanes com mediana 66.62
+2025-06-04 22:09:16,422 - src.processing.data_processor - INFO - Valores ausentes após limpeza: 0
+2025-06-04 22:09:16,422 - src.processing.data_processor - INFO - Registros finais: 3276
+2025-06-04 22:09:16,422 - src.processing.data_processor - INFO - Features utilizadas: ['ph', 'Hardness', 'Solids', 'Chloramines', 'Sulfate', 'Conductivity', 'Organic_carbon', 'Trihalomethanes', 'Turbidity']
+2025-06-04 22:09:16,422 - src.processing.data_processor - INFO - Dividindo dados - Test size: 0.2
+2025-06-04 22:09:16,426 - src.processing.data_processor - INFO - Treino: 2620 amostras
+2025-06-04 22:09:16,426 - src.processing.data_processor - INFO - Teste: 656 amostras
+2025-06-04 22:09:16,426 - src.processing.data_processor - INFO - Normalizando features
+2025-06-04 22:09:16,426 - src.processing.data_processor - INFO - Features normalizadas - Train: (2620, 9)
+2025-06-04 22:09:16,426 - src.processing.data_processor - INFO - Features normalizadas - Test: (656, 9)
+2025-06-04 22:09:16,426 - src.model.train - INFO - Treinando modelo Random Forest
+2025-06-04 22:09:17,005 - src.model.train - INFO - Acurácia no treino: 0.9095
+2025-06-04 22:09:17,005 - src.model.train - INFO - Acurácia no teste: 0.6662
+2025-06-04 22:09:17,012 - src.model.train - INFO - 
+Relatório de Classificação:
+2025-06-04 22:09:17,015 - src.model.train - INFO - 
+              precision    recall  f1-score   support
+
+           0       0.69      0.83      0.75       400
+           1       0.61      0.41      0.49       256
+
+    accuracy                           0.67       656
+   macro avg       0.65      0.62      0.62       656
+weighted avg       0.66      0.67      0.65       656
+
+2025-06-04 22:09:17,015 - src.model.train - INFO - 
+Matriz de Confusão:
+2025-06-04 22:09:17,016 - src.model.train - INFO - 
+[[333  67]
+ [152 104]]
+2025-06-04 22:09:19,067 - src.model.train - INFO - Cross-validation scores: [0.65648855 0.69465649 0.66984733 0.62977099 0.63740458]
+2025-06-04 22:09:19,068 - src.model.train - INFO - CV Score médio: 0.6576 (+/- 0.0465)
+2025-06-04 22:09:19,070 - src.model.train - INFO - 
+Importância das Features:
+2025-06-04 22:09:19,070 - src.model.train - INFO - ph: 0.1628
+2025-06-04 22:09:19,070 - src.model.train - INFO - Hardness: 0.1224
+2025-06-04 22:09:19,070 - src.model.train - INFO - Solids: 0.1164
+2025-06-04 22:09:19,070 - src.model.train - INFO - Chloramines: 0.1145
+2025-06-04 22:09:19,070 - src.model.train - INFO - Sulfate: 0.1707
+2025-06-04 22:09:19,070 - src.model.train - INFO - Conductivity: 0.0870
+2025-06-04 22:09:19,070 - src.model.train - INFO - Organic_carbon: 0.0791
+2025-06-04 22:09:19,070 - src.model.train - INFO - Trihalomethanes: 0.0680
+2025-06-04 22:09:19,070 - src.model.train - INFO - Turbidity: 0.0792
+2025-06-04 22:09:19,085 - src.model.train - INFO - Modelo salvo em: src/model/water_quality_model.pkl
+2025-06-04 22:09:19,085 - src.model.train - INFO - === TREINAMENTO CONCLUÍDO COM SUCESSO ===
+2025-06-04 22:09:19,085 - src.model.train - INFO - Acurácia final no teste: 0.6662
+2025-06-04 22:09:38,363 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-04 22:09:38,420 - src.persistence.db - INFO - Tabela readings já existe
+2025-06-04 22:09:38,443 - src.persistence.db - INFO - Conexão com Oracle fechada
+2025-06-04 22:09:38,714 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-04 22:09:38,795 - src.api.controller - INFO - Recuperadas 10 leituras
+2025-06-04 22:09:38,849 - src.api.controller - INFO - Recuperados 10 alertas
+2025-06-04 22:09:38,850 - src.api.controller - INFO - Estatísticas calculadas: 10 leituras, 0 potáveis
+2025-06-04 22:09:38,923 - src.api.controller - INFO - Recuperadas 10 leituras
+2025-06-04 22:11:09,764 - src.api.controller - INFO - Recuperadas 10 leituras
+2025-06-04 22:11:09,825 - src.api.controller - INFO - Recuperados 10 alertas
+2025-06-04 22:11:09,825 - src.api.controller - INFO - Estatísticas calculadas: 10 leituras, 0 potáveis
+2025-06-04 22:11:09,881 - src.api.controller - INFO - Recuperadas 10 leituras
+2025-06-04 22:22:55,906 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-04 22:22:55,991 - src.persistence.db - INFO - Tabela readings já existe
+2025-06-04 22:22:56,043 - src.persistence.db - INFO - Conexão com Oracle fechada
+2025-06-04 22:22:56,494 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-04 22:22:56,552 - src.api.controller - INFO - Recuperadas 10 leituras
+2025-06-04 22:22:56,605 - src.api.controller - INFO - Recuperados 10 alertas
+2025-06-04 22:22:56,609 - src.api.controller - INFO - Estatísticas calculadas: 10 leituras, 0 potáveis
+2025-06-04 22:22:56,866 - src.api.controller - INFO - Recuperadas 10 leituras
+2025-06-04 22:27:19,946 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-04 22:27:20,011 - src.persistence.db - INFO - Tabela readings já existe
+2025-06-04 22:27:20,048 - src.persistence.db - INFO - Conexão com Oracle fechada
+2025-06-04 22:27:20,298 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-04 22:27:20,378 - src.api.controller - INFO - Recuperadas 10 leituras
+2025-06-04 22:27:20,426 - src.api.controller - INFO - Recuperados 10 alertas
+2025-06-04 22:27:20,427 - src.api.controller - INFO - Estatísticas calculadas: 10 leituras, 0 potáveis
+2025-06-04 22:27:20,481 - src.api.controller - INFO - Recuperadas 10 leituras
+2025-06-05 08:10:16,457 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 08:10:16,520 - src.persistence.db - INFO - Tabela readings já existe
+2025-06-05 08:10:16,549 - src.persistence.db - INFO - Conexão com Oracle fechada
+2025-06-05 08:10:16,846 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 08:10:16,906 - src.api.controller - INFO - Recuperadas 21 leituras
+2025-06-05 08:10:16,960 - src.api.controller - INFO - Recuperados 18 alertas
+2025-06-05 08:10:16,960 - src.api.controller - INFO - Estatísticas calculadas: 21 leituras, 3 potáveis
+2025-06-05 08:10:17,036 - src.api.controller - INFO - Recuperadas 21 leituras
+2025-06-05 08:12:21,243 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 08:12:21,311 - src.persistence.db - INFO - Tabela readings já existe
+2025-06-05 08:12:21,344 - src.persistence.db - INFO - Conexão com Oracle fechada
+2025-06-05 08:12:27,891 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 08:12:27,946 - src.api.controller - INFO - Recuperadas 21 leituras
+2025-06-05 08:12:28,005 - src.api.controller - INFO - Recuperados 18 alertas
+2025-06-05 08:12:28,005 - src.api.controller - INFO - Estatísticas calculadas: 21 leituras, 3 potáveis
+2025-06-05 08:12:28,072 - src.api.controller - INFO - Recuperadas 21 leituras
+2025-06-05 08:14:21,281 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 08:14:21,342 - src.persistence.db - INFO - Tabela readings já existe
+2025-06-05 08:14:21,369 - src.persistence.db - INFO - Conexão com Oracle fechada
+2025-06-05 08:14:28,145 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 08:14:28,217 - src.api.controller - INFO - Recuperadas 21 leituras
+2025-06-05 08:14:28,271 - src.api.controller - INFO - Recuperados 18 alertas
+2025-06-05 08:14:28,272 - src.api.controller - INFO - Estatísticas calculadas: 21 leituras, 3 potáveis
+2025-06-05 08:14:28,380 - src.api.controller - INFO - Recuperadas 21 leituras
+2025-06-05 08:15:11,708 - src.api.controller - INFO - Recuperadas 21 leituras
+2025-06-05 08:19:28,508 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 08:19:28,602 - src.persistence.db - INFO - Tabela readings já existe
+2025-06-05 08:19:28,630 - src.persistence.db - INFO - Conexão com Oracle fechada
+2025-06-05 08:19:30,546 - src.model.predict - INFO - Diretório atual de execução: /Users/marcoassumpcao/Desktop/FIAP/Fase 4/machine-python/GS1Sem
+2025-06-05 08:21:32,623 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 08:21:32,692 - src.persistence.db - INFO - Tabela readings já existe
+2025-06-05 08:21:32,730 - src.persistence.db - INFO - Conexão com Oracle fechada
+2025-06-05 08:21:32,764 - src.model.predict - INFO - Diretório atual de execução: /Users/marcoassumpcao/Desktop/FIAP/Fase 4/machine-python/GS1Sem
+2025-06-05 08:21:35,544 - src.model.predict - INFO - Caminho absoluto do modelo configurado: /Users/marcoassumpcao/Desktop/FIAP/Fase 4/machine-python/GS1Sem/src/src/model/water_quality_model.pkl
+2025-06-05 08:21:41,451 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 08:21:41,514 - src.api.controller - INFO - Recuperadas 21 leituras
+2025-06-05 08:21:41,588 - src.api.controller - INFO - Recuperados 18 alertas
+2025-06-05 08:21:41,594 - src.api.controller - INFO - Estatísticas calculadas: 21 leituras, 3 potáveis
+2025-06-05 08:21:41,918 - src.api.controller - INFO - Recuperadas 21 leituras
+2025-06-05 08:30:36,732 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 08:30:36,792 - src.persistence.db - INFO - Tabela readings já existe
+2025-06-05 08:30:36,821 - src.persistence.db - INFO - Conexão com Oracle fechada
+2025-06-05 08:30:39,204 - src.model.predict - INFO - Diretório atual de execução: /Users/marcoassumpcao/Desktop/FIAP/Fase 4/machine-python/GS1Sem
+2025-06-05 08:30:45,345 - src.model.predict - INFO - Caminho absoluto do modelo configurado: /Users/marcoassumpcao/Desktop/FIAP/Fase 4/machine-python/GS1Sem/src/model/water_quality_model.pkl
+2025-06-05 08:30:50,525 - src.persistence.db - INFO - Conectado ao Oracle Database com sucesso
+2025-06-05 08:30:50,593 - src.api.controller - INFO - Recuperadas 21 leituras
+2025-06-05 08:30:50,648 - src.api.controller - INFO - Recuperados 18 alertas
+2025-06-05 08:30:50,649 - src.api.controller - INFO - Estatísticas calculadas: 21 leituras, 3 potáveis
+2025-06-05 08:30:50,746 - src.api.controller - INFO - Recuperadas 21 leituras
