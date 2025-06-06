@@ -96,44 +96,67 @@ class WaterQualityPredictor:
     def predict_from_sensor_data(self, sensor_data: Dict[str, float]) -> Dict[str, any]:
         """
         Realiza predição baseada em dados dos sensores.
-        
+
         Args:
             sensor_data: Dicionário com dados dos sensores
-                        {'ph': float, 'turbidity': float, 'chloramines': float, ...}
-        
+                         {'ph': float, 'turbidity': float, 'chloramines': float, ...}
+
         Returns:
             Dict com resultado da predição e probabilidades
         """
         if not self.is_loaded:
             self.load_model()
-        
+
         try:
-            # Processar dados do sensor usando o processor
+            # -------------------------------------------------------------
+            # 1) Regra determinística: se TODOS os quatro parâmetros estiverem
+            #    dentro das faixas "ideais", força Potável (1) sem chamar o modelo
+            ph   = sensor_data.get('ph', 0.0)
+            chl  = sensor_data.get('chloramines', 0.0)
+            cond = sensor_data.get('conductivity', 0.0)
+            turb = sensor_data.get('turbidity', 0.0)
+
+            if (6.5  <= ph   <= 8.5 and
+                0.20 <= chl  <= 2.00 and
+                cond <= 500   and
+                turb <= 5.0):
+                # Montar o resultado “à mão”, simulando saída do modelo
+                return {
+                    'is_potable': True,
+                    'potability_label': 'POTAVEL',
+                    'confidence': 1.0,           # ou algum valor fixo alto
+                    'probabilities': {
+                        'not_potable': 0.0,
+                        'potable':     1.0
+                    },
+                    'sensor_data': sensor_data
+                }
+            # -------------------------------------------------------------
+
+            # 2) Caso não se enquadre nas faixas ideais, usa o pipeline tradicional
             features_scaled = self.processor.process_sensor_reading(sensor_data)
-            
-            # Fazer predição
+
             prediction = self.model.predict(features_scaled)[0]
             probabilities = self.model.predict_proba(features_scaled)[0]
-            
+
             result = {
                 'is_potable': bool(prediction),
                 'potability_label': 'POTAVEL' if prediction == 1 else 'NAO_POTAVEL',
                 'confidence': float(max(probabilities)),
                 'probabilities': {
                     'not_potable': float(probabilities[0]),
-                    'potable': float(probabilities[1])
+                    'potable':     float(probabilities[1])
                 },
                 'sensor_data': sensor_data
             }
-            
+
             logger.info(f"Predição de sensor: {result['potability_label']} (confiança: {result['confidence']:.3f})")
-            
             return result
-            
+
         except Exception as e:
             logger.error(f"Erro na predição de sensor: {e}")
             raise
-    
+
     def predict_batch(self, features_list: List[List[float]]) -> List[bool]:
         """
         Realiza predições em lote.
