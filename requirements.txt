@@ -1,0 +1,34 @@
+####################################
+##### Arquivo: requirements.txt
+##### Desenvolvedor: Juan F. Voltolini
+##### Instituição: FIAP
+##### Trabalho: Global Solution - 1º Semestre
+##### Grupo: Felipe Sabino da Silva, Juan Felipe Voltolini, Luiz Henrique Ribeiro de Oliveira, Marco Aurélio Eberhardt Assumpção e Paulo Henrique Senise
+####################################
+
+# Flask para API web
+Flask>=3.0.0
+
+# Oracle Database connectivity
+oracledb>=3.1.0
+
+# Data Science e Machine Learning
+pandas>=2.1.0
+numpy>=1.24.0
+scikit-learn>=1.3.0
+joblib>=1.3.0
+
+# Interface de usuário
+streamlit>=1.30.0
+
+# Configuração e utilidades
+PyYAML>=6.0.0
+
+# Visualização de dados
+matplotlib>=3.7.0
+seaborn>=0.12.0
+plotly>=5.15.0
+
+# Desenvolvimento e testes
+pytest>=7.4.0
+

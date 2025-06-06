@@ -45,7 +45,6 @@ tmp/
 *.h5
 
 # Arquivos de dados grandes (se necessário)
-*.csv
 *.xlsx
 *.parquet
 
