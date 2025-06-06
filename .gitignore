@@ -1,0 +1,55 @@
+# Ambientes virtuais
+.venv/
+venv/
+ENV/
+
+# Arquivos de cache Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Arquivos de distribuição
+dist/
+build/
+*.egg-info/
+
+# IDEs e editores
+.idea/*
+!.idea/vcs.xml
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Arquivos de log
+logs/
+*.log
+
+# Arquivos de configuração local
+config/local_config.yaml
+.env
+
+# Arquivos de banco de dados
+*.db
+*.sqlite3
+
+# Arquivos temporários
+temp/
+tmp/
+
+# Arquivos de cache Jupyter Notebook
+.ipynb_checkpoints
+
+# Arquivos de modelo ML (se necessário armazenar separadamente)
+*.pkl
+*.h5
+
+# Arquivos de dados grandes (se necessário)
+*.csv
+*.xlsx
+*.parquet
+
+# Certificados e arquivos sensíveis
+*.pem
+*.key
+*.crt
