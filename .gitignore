@@ -52,3 +52,6 @@ tmp/
 *.pem
 *.key
 *.crt
+
+.idea/
+.vscode/
