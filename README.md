@@ -30,14 +30,6 @@
 
 Sistema IoT com Machine Learning para monitoramento em tempo real da potabilidade da água, desenvolvido para o desafio de eventos naturais extremos com foco em qualidade hídrica.
 
-## 👥 Equipe
-
-- **Felipe Sabino da Silva**
-- **Juan Felipe Voltolini**
-- **Luiz Henrique Ribeiro de Oliveira**
-- **Marco Aurélio Eberhardt Assumpção**
-- **Paulo Henrique Senise**
-
 ## 🎯 Objetivo
 
 Desenvolver um sistema integrado que combina:
@@ -77,7 +69,7 @@ Desenvolver um sistema integrado que combina:
 
 ## 🛠️ Tecnologias
 
-- **Python 3.9+** - Linguagem principal
+- **Python 3.12+** - Linguagem principal
 - **Scikit-learn** - Machine Learning (Random Forest)
 - **Streamlit** - Interface web moderna
 - **Oracle Database** - Persistência de dados
