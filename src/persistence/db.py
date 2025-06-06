@@ -36,7 +36,7 @@ class DatabaseConnection:
     def _load_config(self):
         """Carrega configurações do banco de dados."""
         config_path = Path(__file__).parent.parent.parent / "config" / "config.yaml"
-        with open(config_path, 'r') as file:
+        with open(config_path, 'r', encoding='utf-8') as file:
             return yaml.safe_load(file)['database']
     
     def connect(self):

@@ -9,7 +9,7 @@
 # Configurações do Banco de Dados Oracle
 database:
   user: "system"
-  password: "MinhaSenha123"
+  password: "senha123"
   dsn: "localhost/FREEPDB1"
   
 # Configurações do Machine Learning

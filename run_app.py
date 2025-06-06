@@ -40,7 +40,7 @@ def main():
             print(f"❌ Arquivo de configuração não encontrado: {config_path}")
             sys.exit(1)
 
-        with open(config_path, 'r') as file:
+        with open(config_path, 'r', encoding='utf-8') as file:
             config = yaml.safe_load(file)
 
         if 'ml' not in config or 'model_path' not in config['ml']:
