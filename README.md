@@ -98,7 +98,7 @@ Desenvolver um sistema integrado que combina:
 
 ### 1. Clone o Repositório
 ```bash
-git clone <repository-url>
+git clone git@github.com:marcofiap/GS1Sem.git
 cd GS1Sem
 ```
 
@@ -274,7 +274,7 @@ CREATE TABLE readings (
 
 ### Executar Testes
 ```bash
-pytest tests/
+python run_tests.py
 ```
 
 ### Tipos de Teste
