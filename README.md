@@ -138,7 +138,6 @@ python src/api/servidor.py
 Exemplo: String serverName = "http://192.168.2.166:8000/data"; 
 
 ### 8. Emule os sensores e clique no botão
-
 A aplicação estará disponível em: http://localhost:8501
 
 ## 📊 Como Adicionar Dados ao Sistema
@@ -148,7 +147,7 @@ Após a instalação, o banco de dados Oracle estará vazio. Para popular o sist
 ### **Opção 1: Via Wokwi (Sensores Simulados)**
 - Configure o simulador Wokwi conforme descrito no passo 7
 - Ajuste o IP da sua máquina no arquivo `main.cpp`
-- Execute os sensores virtuais no navegador
+- Execute os sensores virtuais no Wokwi
 - Os dados são enviados via HTTP e salvos automaticamente no Oracle
 
 ### **Opção 2: Via Interface Web (Manual)**
@@ -157,11 +156,6 @@ Após a instalação, o banco de dados Oracle estará vazio. Para popular o sist
 - Insira valores manualmente para pH, turbidez, cloraminas e condutividade
 - O sistema fará a predição usando Machine Learning
 - Os dados podem ser salvos no banco para análise posterior
-
-### **Opção 3: Dados de Teste (Opcional)**
-- Execute um script Python para gerar dados simulados
-- Popula o banco com leituras diversificadas para demonstração
-- Ideal para testes de análise estatística e visualizações
 
 ## 📊 Funcionalidades
 

@@ -30,10 +30,6 @@ config/local_config.yaml
 config/config.yaml
 .env
 
-# Arquivos de configuração de sensores e servidores locais
-simularsensor/src/main.cpp
-simularsensor/servidor_local/servidor.py
-
 # Arquivos de banco de dados
 *.db
 *.sqlite3

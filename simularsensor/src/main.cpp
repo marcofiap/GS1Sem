@@ -38,7 +38,7 @@ float phValue = 0.00;
 String waterPrediction = "STANDBY"; // Armazena a previsão do servidor
 
 // --- Endereço do Servidor Flask ---
-String serverName = "http://192.168.2.166:8000/data"; 
+String serverName = "http://192.168.0.35:8000/data"; 
 
 // --- Função de Inicialização ---
 void setup() {
