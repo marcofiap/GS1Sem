@@ -129,9 +129,14 @@ python train_model.py
 python run_app.py
 ```
 
-### 6. Execute o servidor
+### 6. Execute o servidor no mac
 ```bash
 python src/api/servidor.py
+```
+
+### 6. Execute o servidor no windows
+```bash
+python -m src.api.servidor
 ```
 
 ### 7. Configure na pasta simularsensor/src a variável serverName dentro do arquivo main.cpp para setar o IP correto de sua máquina

@@ -32,3 +32,8 @@ plotly>=5.15.0
 # Desenvolvimento e testes
 pytest>=7.4.0
 
+# Análises estatísticas em R
+# NOTA: R deve ser instalado separadamente do sistema
+# Download em: https://cran.r-project.org/
+# Pacotes R necessários: ggplot2, dplyr, jsonlite (instalados automaticamente)
+

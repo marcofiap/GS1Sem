@@ -16,5 +16,5 @@ compile.bat
 # 3. Abrir o arquivo diagram.json
 # 4. Clicar em "Start the Simulation"
 
-# 5. Depois de dar play no diagram com wokwi, é necessário rodar o servidor local que irá receber dados dos sensores emulados 
-python src/api/servidor.py
+# 5. Depois de dar play no diagram com wokwi, é necessário rodar o servidor da raiz do projeto para receber dados dos sensores emulados 
+python src/api/servidor.py 
