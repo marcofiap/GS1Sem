@@ -27,6 +27,7 @@ logs/
 
 # Arquivos de configuração local
 config/local_config.yaml
+config/config.yaml
 .env
 
 # Arquivos de banco de dados
