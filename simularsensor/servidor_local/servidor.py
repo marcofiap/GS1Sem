@@ -6,8 +6,8 @@ app = Flask(__name__)
 
 # *** Configurações do Banco de Dados Oracle ***
 DB_USER = "system"  # Substitua pelo seu nome de usuário Oracle
-DB_PASSWORD = "system"  # Substitua pela sua senha Oracle
-DB_DSN = "localhost:1521/xe"  # Substitua pela sua string de conexão DSN (e.g., "localhost/XEPDB1" ou "your_oracle_host:1521/your_service_name")
+DB_PASSWORD = "MinhaSenha123"  # Substitua pela sua senha Oracle
+DB_DSN = "localhost/FREEPDB1"  # Substitua pela sua string de conexão DSN (e.g., "localhost/XEPDB1" ou "your_oracle_host:1521/your_service_name")
 
 def conectar_db():
     """Conecta ao banco de dados Oracle."""

@@ -129,17 +129,41 @@ python train_model.py
 python run_app.py
 ```
 
-### 6. Execute o servidor
+### 6. Execute o servidor no mac
 ```bash
 python src/api/servidor.py
+```
+
+### 6. Execute o servidor no windows
+```bash
+python -m src.api.servidor
 ```
 
 ### 7. Configure na pasta simularsensor/src a variável serverName dentro do arquivo main.cpp para setar o IP correto de sua máquina
 Exemplo: String serverName = "http://192.168.2.166:8000/data"; 
 
 ### 8. Emule os sensores e clique no botão
-
 A aplicação estará disponível em: http://localhost:8501
+
+### 9. Para funcionar a análise em R pode ser preciso executar no seu terminal:
+Rscript -e 'install.packages(c("ggplot2", "dplyr", "jsonlite"), repos = "https://cloud.r-project.org")'
+
+## 📊 Como Adicionar Dados ao Sistema
+
+Após a instalação, o banco de dados Oracle estará vazio. Para popular o sistema com dados para análise, você pode usar uma das seguintes opções:
+
+### **Opção 1: Via Wokwi (Sensores Simulados)**
+- Configure o simulador Wokwi conforme descrito no passo 7
+- Ajuste o IP da sua máquina no arquivo `main.cpp`
+- Execute os sensores virtuais no Wokwi
+- Os dados são enviados via HTTP e salvos automaticamente no Oracle
+
+### **Opção 2: Via Interface Web (Manual)**
+- Acesse `http://localhost:8501` no navegador
+- Navegue até a seção **"Análise Detalhada"**
+- Insira valores manualmente para pH, turbidez, cloraminas e condutividade
+- O sistema fará a predição usando Machine Learning
+- Os dados podem ser salvos no banco para análise posterior
 
 ## 📊 Funcionalidades
 
@@ -205,35 +229,80 @@ GET /data?ph=7.2&turbidity=3.5&chloramines=1.2&conductivity=450
 ```
 GS1Sem/
 ├── config/
-│   └── config.yaml              # Configurações do sistema
+│   └── config.yaml                    # Configurações do sistema
+├── imagem/
+│   ├── logo-fiap.png                  # Logo da FIAP
+│   └── circuito.png                   # Imagem do circuito
+├── include/
+│   └── README                         # Documentação include
+├── lib/
+│   └── README                         # Documentação lib
+├── logs/
+│   └── app.log                        # Logs do sistema
+├── simularsensor/                     # Simulador de sensores ESP32
+│   ├── imagem/
+│   │   └── circuito.png               # Imagem do circuito
+│   ├── servidor_local/
+│   │   └── servidor.py                # Servidor local para sensores
+│   ├── src/
+│   │   └── main.cpp                   # Código ESP32 (C++)
+│   ├── .gitignore
+│   ├── compile.bat                    # Script compilação Windows
+│   ├── compile.sh                     # Script compilação Unix
+│   ├── diagram.json                   # Diagrama Wokwi
+│   ├── platformio.ini                 # Configurações PlatformIO
+│   ├── README_SIMULADOR.md            # Documentação simulador
+│   ├── requirements.txt               # Dependências simulador
+│   └── wokwi.toml                     # Configurações Wokwi
 ├── src/
 │   ├── api/
 │   │   ├── __init__.py
-│   │   └── controller.py        # Controller principal da API
+│   │   ├── controller.py              # Controller principal da API
+│   │   └── servidor.py                # Servidor HTTP para sensores
 │   ├── model/
 │   │   ├── __init__.py
-│   │   ├── train.py            # Treinamento do modelo
-│   │   └── predict.py          # Inferência e predições
+│   │   ├── predict.py                 # Inferência e predições
+│   │   ├── train.py                   # Treinamento do modelo
+│   │   └── water_quality_model.pkl    # Modelo treinado
 │   ├── persistence/
 │   │   ├── __init__.py
-│   │   └── db.py               # Conexão Oracle e Repository
+│   │   └── db.py                      # Conexão Oracle e Repository
 │   ├── processing/
 │   │   ├── __init__.py
-│   │   └── data_processor.py   # Processamento de dados
+│   │   └── data_processor.py          # Processamento de dados
+│   ├── r_analysis/                    # Análise estatística em R
+│   │   ├── scripts/
+│   │   │   └── water_analysis.R       # Script R para análise
+│   │   ├── __init__.py
+│   │   └── r_analyzer.py              # Interface Python-R
 │   ├── ui/
 │   │   ├── __init__.py
-│   │   └── app.py              # Interface Streamlit
-│   └── utils/
-│       ├── __init__.py
-│       └── logging.py          # Sistema de logging
-├── servidor_local/
-│   └── servidor.py             # Servidor Flask para ESP32
-├── logs/                       # Logs do sistema
-├── water_potability.csv        # Dataset de treinamento
-├── train_model.py             # Script de treinamento
-├── run_app.py                 # Script de execução
-├── requirements.txt           # Dependências Python
-└── README.md                  # Este arquivo
+│   │   └── app.py                     # Interface Streamlit
+│   ├── utils/
+│   │   ├── __init__.py
+│   │   └── logging.py                 # Sistema de logging
+│   └── __init__.py
+├── tests/                             # Testes do sistema
+│   ├── __init__.py
+│   ├── 2water_quality_controller_test.py
+│   ├── predictor_test_cases.py
+│   ├── README
+│   ├── water_quality_controller_test.py
+│   ├── water_quality_predictor_test.py
+│   └── WaterQualityModelTrainer_test.py
+├── .gitignore                         # Arquivos ignorados pelo Git
+├── __init__.py                        # Arquivo de inicialização
+├── ANÁLISE_R_INSTRUÇÕES.md            # Instruções para análise R
+├── debug_r_output.py                  # Debug de saídas R
+├── README.md                          # Este arquivo
+├── requirements.txt                   # Dependências Python
+├── run_app.py                         # Script de execução principal
+├── run_tests.py                       # Script para executar testes
+├── test_r_analysis.py                 # Testes da análise R
+├── test_r_streamlit.py                # Testes Streamlit com R
+├── test_r_venv.py                     # Testes ambiente virtual R
+├── train_model.py                     # Script de treinamento
+└── water_potability.csv               # Dataset de treinamento
 ```
 
 ## 🔧 Configurações Avançadas

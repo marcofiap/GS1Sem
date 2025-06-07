@@ -16,7 +16,7 @@ def setup_logging():
     
     # Carregar configurações
     config_path = Path(__file__).parent.parent.parent / "config" / "config.yaml"
-    with open(config_path, 'r') as file:
+    with open(config_path, 'r', encoding='utf-8') as file:
         config = yaml.safe_load(file)
     
     log_config = config['logging']

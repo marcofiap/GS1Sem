@@ -33,7 +33,7 @@ class WaterQualityModelTrainer:
     def _load_config(self):
         """Carrega configurações do arquivo YAML."""
         config_path = Path(__file__).parent.parent.parent / "config" / "config.yaml"
-        with open(config_path, 'r') as file:
+        with open(config_path, 'r', encoding='utf-8') as file:
             config = yaml.safe_load(file)
         self.model_path = config['ml']['model_path']
     

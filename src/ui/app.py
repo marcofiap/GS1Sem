@@ -14,12 +14,15 @@ import sys
 import os
 from pathlib import Path
 import numpy as np
+import base64
+from io import BytesIO
 
 # Adicionar o diretório src ao path para importações
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 
 from src.api.controller import get_controller
 from src.utils.logging import setup_logging, get_logger
+from src.r_analysis import RAnalyzer
 
 # Configurar logging
 setup_logging()
@@ -107,7 +110,7 @@ def main():
     st.sidebar.title("Navegação")
     page = st.sidebar.selectbox(
         "Escolha uma página:",
-        ["Dashboard", "Análise Detalhada", "Dataset", "Histórico", "Alertas", "Configurações"]
+        ["Dashboard", "Análise Detalhada", "Dataset", "Histórico", "Alertas", "Configurações", "Análise em R"]
     )
 
     if page == "Dashboard":
@@ -122,6 +125,8 @@ def main():
         show_alerts()
     elif page == "Configurações":
         show_settings()
+    elif page == "Análise em R":
+        show_r_analysis()
 
 
 def show_dashboard():
@@ -695,6 +700,572 @@ def show_dataset():
     except Exception as e:
         st.error(f"❌ Erro ao carregar dataset: {e}")
         logger.error(f"Erro no show_dataset: {e}")
+
+
+def show_r_analysis():
+    """Exibe página de análise estatística em R."""
+    st.header("📊 Análise Estatística em R")
+    
+    st.markdown("""
+    **Análises estatísticas avançadas usando R para dados de qualidade da água**
+    
+    Esta página permite realizar análises estatísticas detalhadas dos dados coletados pelos sensores,
+    utilizando a linguagem R para processamento e visualização avançada.
+    """)
+    
+    # Seleção do tipo de dados
+    st.subheader("🗂️ Fonte dos Dados")
+    
+    data_source = st.radio(
+        "Escolha a fonte dos dados para análise:",
+        options=["Dados Pré-carregados", "Dados Coletados em Tempo Real"],
+        help="Selecione se deseja analisar o dataset pré-carregado ou os dados coletados pelos sensores"
+    )
+    
+    # Divisor visual
+    st.divider()
+    
+    if data_source == "Dados Pré-carregados":
+        show_preloaded_data_analysis()
+    else:
+        show_realtime_data_analysis()
+
+
+def show_preloaded_data_analysis():
+    """Exibe análise dos dados pré-carregados."""
+    st.subheader("📈 Análise de Dados Pré-carregados")
+    
+    st.info("""
+    **Dataset de Treinamento**
+    
+    Utilizando o dataset `water_potability.csv` com dados históricos para análises estatísticas.
+    """)
+    
+    # Verificar se R está disponível
+    r_analyzer = RAnalyzer()
+    r_available = r_analyzer.check_r_availability()
+    
+    # Adicionar informações de debug
+    with st.expander("🔧 Debug - Informações do Sistema"):
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.markdown("**Ambiente Python:**")
+            st.code(f"""
+Virtual Env: {os.environ.get('VIRTUAL_ENV', 'Não detectada')}
+Python: {sys.executable}
+Working Dir: {os.getcwd()}
+            """)
+        
+        with col2:
+            st.markdown("**Detecção do R:**")
+            if r_available:
+                st.success(f"✅ R encontrado em: {r_analyzer.rscript_path}")
+            else:
+                st.error("❌ R não encontrado")
+                
+            if st.button("🔄 Forçar Nova Detecção do R"):
+                # Criar nova instância para forçar nova detecção
+                st.cache_data.clear()  # Limpar cache do Streamlit
+                r_analyzer = RAnalyzer()  # Nova instância
+                r_available = r_analyzer.check_r_availability(force_recheck=True)
+                if r_available:
+                    st.success(f"✅ R encontrado após nova detecção: {r_analyzer.rscript_path}")
+                    st.rerun()
+                else:
+                    st.error("❌ R ainda não foi encontrado")
+    
+    if not r_available:
+        return
+    
+    # Carregar dataset
+    try:
+        dataset_path = Path(__file__).parent.parent.parent / "water_potability.csv"
+        if not dataset_path.exists():
+            st.error("❌ Dataset water_potability.csv não encontrado!")
+            return
+        
+        df = pd.read_csv(dataset_path)
+        
+        # Informações sobre o dataset
+        col1, col2, col3, col4 = st.columns(4)
+        
+        with col1:
+            st.metric("Total de Registros", f"{len(df):,}")
+        
+        with col2:
+            st.metric("Variáveis", f"{len(df.columns)}")
+        
+        with col3:
+            missing_pct = (df.isnull().sum().sum() / (len(df) * len(df.columns))) * 100
+            st.metric("% Valores Ausentes", f"{missing_pct:.1f}%")
+        
+        with col4:
+            potable_pct = (df['Potability'].sum() / len(df)) * 100
+            st.metric("% Potável", f"{potable_pct:.1f}%")
+        
+        # Seleção de variáveis para análise
+        st.subheader("🔬 Configuração da Análise")
+        
+        numeric_columns = df.select_dtypes(include=[np.number]).columns.tolist()
+        if 'Potability' in numeric_columns:
+            numeric_columns.remove('Potability')
+        
+        selected_vars = st.multiselect(
+            "Selecione as variáveis para análise:",
+            options=numeric_columns,
+            default=numeric_columns[:3] if len(numeric_columns) >= 3 else numeric_columns,
+            help="Escolha quais variáveis numéricas analisar"
+        )
+        
+        if not selected_vars:
+            st.warning("⚠️ Selecione pelo menos uma variável para análise.")
+            return
+        
+        # Tipos de análise
+        analysis_types = st.multiselect(
+            "Selecione os tipos de análise:",
+            options=[
+                "Medidas de Tendência Central",
+                "Medidas de Dispersão", 
+                "Medidas Separatrizes",
+                "Gráficos (Histograma, Boxplot)",
+                "Análise de Potabilidade"
+            ],
+            default=["Medidas de Tendência Central", "Gráficos (Histograma, Boxplot)"]
+        )
+        
+        if st.button("🚀 Executar Análises Estatísticas em R", type="primary"):
+            
+            # Preparar dados para análise
+            analysis_df = df[selected_vars + ['Potability']].copy()
+            analysis_df = analysis_df.rename(columns={'Potability': 'potability'})
+            
+            with st.spinner("⏳ Executando análises estatísticas em R..."):
+                
+                try:
+                    # Executar análise R
+                    results = r_analyzer.analyze_data(analysis_df)
+                    
+                    if "error" in results:
+                        st.error(f"❌ Erro na análise: {results['error']}")
+                        return
+                    
+                    st.success("✅ Análises concluídas com sucesso!")
+                    
+                    # Exibir resultados estatísticos
+                    if "statistics" in results and results["statistics"]:
+                        st.subheader("📊 Resultados Estatísticos")
+                        
+                        for var, stats in results["statistics"].items():
+                            st.markdown(f"### 📈 {var.title()}")
+                            
+                            col1, col2, col3 = st.columns(3)
+                            
+                            # Tendência central
+                            if "tendencia_central" in stats:
+                                with col1:
+                                    st.markdown("**Tendência Central**")
+                                    tc = stats["tendencia_central"]
+                                    st.metric("Média", f"{tc.get('media', 0):.4f}")
+                                    st.metric("Mediana", f"{tc.get('mediana', 0):.4f}")
+                                    st.metric("Moda", f"{tc.get('moda', 0):.4f}")
+                            
+                            # Dispersão
+                            if "dispersao" in stats:
+                                with col2:
+                                    st.markdown("**Dispersão**")
+                                    disp = stats["dispersao"]
+                                    st.metric("Variância", f"{disp.get('variancia', 0):.4f}")
+                                    st.metric("Desvio Padrão", f"{disp.get('desvio_padrao', 0):.4f}")
+                                    st.metric("Amplitude", f"{disp.get('amplitude', 0):.4f}")
+                                    st.metric("IQR", f"{disp.get('iqr', 0):.4f}")
+                            
+                            # Separatrizes
+                            if "separatrizes" in stats:
+                                with col3:
+                                    st.markdown("**Separatrizes**")
+                                    sep = stats["separatrizes"]
+                                    
+                                    if "quartis" in sep:
+                                        quartis = sep["quartis"]
+                                        # quartis vem como lista [Q1, Q2, Q3] do R
+                                        if isinstance(quartis, list) and len(quartis) >= 3:
+                                            st.metric("Q1", f"{quartis[0]:.4f}")
+                                            st.metric("Q2 (Mediana)", f"{quartis[1]:.4f}")
+                                            st.metric("Q3", f"{quartis[2]:.4f}")
+                                        elif isinstance(quartis, dict):
+                                            # Fallback para formato de dicionário
+                                            st.metric("Q1", f"{quartis.get('25%', 0):.4f}")
+                                            st.metric("Q2 (Mediana)", f"{quartis.get('50%', 0):.4f}")
+                                            st.metric("Q3", f"{quartis.get('75%', 0):.4f}")
+                            
+                            st.divider()
+                    
+                    # Exibir gráficos
+                    if "graphics" in results and results["graphics"]:
+                        st.subheader("📊 Visualizações")
+                        
+                        # Organizar gráficos em colunas
+                        graphics = results["graphics"]
+                        
+                        # Gráficos de barras para potabilidade
+                        if "barplot_potability" in graphics:
+                            st.markdown("### 📊 Distribuição de Potabilidade")
+                            img_data = base64.b64decode(graphics["barplot_potability"])
+                            st.image(img_data, use_container_width=True)
+                            st.divider()
+                        
+                        # Histogramas e boxplots
+                        for var in selected_vars:
+                            hist_key = f"histogram_{var}"
+                            box_key = f"boxplot_{var}"
+                            
+                            if hist_key in graphics or box_key in graphics:
+                                st.markdown(f"### 📈 {var.title()}")
+                                
+                                col1, col2 = st.columns(2)
+                                
+                                if hist_key in graphics:
+                                    with col1:
+                                        st.markdown("**Histograma**")
+                                        img_data = base64.b64decode(graphics[hist_key])
+                                        st.image(img_data, use_container_width=True)
+                                
+                                if box_key in graphics:
+                                    with col2:
+                                        st.markdown("**Boxplot**")
+                                        img_data = base64.b64decode(graphics[box_key])
+                                        st.image(img_data, use_container_width=True)
+                                
+                                st.divider()
+                
+                except Exception as e:
+                    st.error(f"❌ Erro durante a análise: {str(e)}")
+                    logger.error(f"Erro na análise R: {str(e)}")
+    
+    except Exception as e:
+        st.error(f"❌ Erro ao carregar dataset: {str(e)}")
+        logger.error(f"Erro ao carregar dataset: {str(e)}")
+
+
+def show_realtime_data_analysis():
+    """Exibe análise dos dados coletados em tempo real."""
+    st.subheader("⏰ Análise de Dados em Tempo Real")
+    
+    st.info("""
+    **Dados dos Sensores IoT**
+    
+    Analisando dados coletados pelos sensores ESP32 em tempo real.
+    """)
+    
+    # Verificar se R está disponível
+    r_analyzer = RAnalyzer()
+    r_available = r_analyzer.check_r_availability()
+    
+    # Adicionar informações de debug
+    with st.expander("🔧 Debug - Informações do Sistema"):
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.markdown("**Ambiente Python:**")
+            st.code(f"""
+Virtual Env: {os.environ.get('VIRTUAL_ENV', 'Não detectada')}
+Python: {sys.executable}
+Working Dir: {os.getcwd()}
+            """)
+        
+        with col2:
+            st.markdown("**Detecção do R:**")
+            if r_available:
+                st.success(f"✅ R encontrado em: {r_analyzer.rscript_path}")
+            else:
+                st.error("❌ R não encontrado")
+                
+            if st.button("🔄 Forçar Nova Detecção do R"):
+                # Criar nova instância para forçar nova detecção
+                st.cache_data.clear()  # Limpar cache do Streamlit
+                r_analyzer = RAnalyzer()  # Nova instância
+                r_available = r_analyzer.check_r_availability(force_recheck=True)
+                if r_available:
+                    st.success(f"✅ R encontrado após nova detecção: {r_analyzer.rscript_path}")
+                    st.rerun()
+                else:
+                    st.error("❌ R ainda não foi encontrado")
+    
+    if not r_available:
+        return
+    
+    # Carregar dados recentes
+    try:
+        readings = get_recent_readings(1000)  # Últimas 1000 leituras
+        
+        if not readings:
+            st.warning("⚠️ Nenhum dado encontrado. Verifique se o sistema de coleta está ativo.")
+            st.markdown("""
+            **Para coletar dados:**
+            1. Execute o servidor: `python -m src.api.servidor`
+            2. Configure o simulador ESP32 no Wokwi
+            3. Pressione o botão na simulação para enviar dados
+            """)
+            return
+        
+        df = pd.DataFrame(readings)
+        
+        # Tratar timestamp se existir
+        if 'timestamp' in df.columns:
+            df['timestamp'] = pd.to_datetime(df['timestamp'], errors='coerce')
+        
+        # Métricas dos dados em tempo real
+        col1, col2, col3, col4 = st.columns(4)
+        
+        with col1:
+            st.metric("Total de Leituras", len(df))
+        
+        with col2:
+            if 'timestamp' in df.columns:
+                latest = df['timestamp'].max()
+                oldest = df['timestamp'].min()
+                period = latest - oldest
+                st.metric("Período", f"{period.days} dias")
+            else:
+                st.metric("Período", "N/A")
+        
+        with col3:
+            if 'potability' in df.columns:
+                potable_count = df[df['potability'] == 1].shape[0]
+                potable_pct = (potable_count / len(df)) * 100
+                st.metric("% Potável", f"{potable_pct:.1f}%")
+            else:
+                st.metric("% Potável", "N/A")
+        
+        with col4:
+            numeric_cols = df.select_dtypes(include=[np.number]).columns
+            st.metric("Variáveis Numéricas", len(numeric_cols))
+        
+        # Prévia dos dados
+        st.subheader("📋 Prévia dos Dados")
+        st.dataframe(df.head(10), use_container_width=True)
+        
+        # Configuração da análise
+        st.subheader("🔬 Configuração da Análise")
+        
+        # Seleção de variáveis
+        numeric_columns = df.select_dtypes(include=[np.number]).columns.tolist()
+        if 'potability' in numeric_columns:
+            numeric_columns.remove('potability')
+        if 'id' in numeric_columns:
+            numeric_columns.remove('id')
+        
+        if not numeric_columns:
+            st.warning("⚠️ Nenhuma variável numérica encontrada nos dados.")
+            return
+        
+        selected_vars = st.multiselect(
+            "Selecione as variáveis para análise:",
+            options=numeric_columns,
+            default=numeric_columns,
+            help="Escolha quais variáveis dos sensores analisar"
+        )
+        
+        if not selected_vars:
+            st.warning("⚠️ Selecione pelo menos uma variável para análise.")
+            return
+        
+        # Tipos de análise
+        analysis_types = st.multiselect(
+            "Selecione os tipos de análise:",
+            options=[
+                "Medidas de Tendência Central",
+                "Medidas de Dispersão", 
+                "Medidas Separatrizes",
+                "Gráficos (Histograma, Boxplot)",
+                "Análise de Potabilidade",
+                "Controle de Qualidade"
+            ],
+            default=["Medidas de Tendência Central", "Gráficos (Histograma, Boxplot)"]
+        )
+        
+        # Configurações avançadas
+        with st.expander("⚙️ Configurações Avançadas"):
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                sample_size = st.number_input(
+                    "Tamanho da Amostra", 
+                    min_value=10, 
+                    max_value=len(df), 
+                    value=min(500, len(df)),
+                    help="Número de registros mais recentes para análise"
+                )
+            
+            with col2:
+                remove_outliers = st.checkbox(
+                    "Remover Outliers", 
+                    value=False,
+                    help="Remove valores extremos antes da análise"
+                )
+        
+        if st.button("🚀 Executar Análises Estatísticas em R", type="primary"):
+            
+            # Preparar dados para análise
+            analysis_df = df[selected_vars + (['potability'] if 'potability' in df.columns else [])].copy()
+            
+            # Usar apenas os registros mais recentes
+            if len(analysis_df) > sample_size:
+                analysis_df = analysis_df.tail(sample_size)
+            
+            # Remover outliers se solicitado
+            if remove_outliers:
+                Q1 = analysis_df[selected_vars].quantile(0.25)
+                Q3 = analysis_df[selected_vars].quantile(0.75)
+                IQR = Q3 - Q1
+                mask = ~((analysis_df[selected_vars] < (Q1 - 1.5 * IQR)) | 
+                        (analysis_df[selected_vars] > (Q3 + 1.5 * IQR))).any(axis=1)
+                analysis_df = analysis_df[mask]
+                st.info(f"📊 Dados após remoção de outliers: {len(analysis_df)} registros")
+            
+            with st.spinner("⏳ Executando análises estatísticas em R..."):
+                
+                try:
+                    # Executar análise R
+                    results = r_analyzer.analyze_data(analysis_df)
+                    
+                    if "error" in results:
+                        st.error(f"❌ Erro na análise: {results['error']}")
+                        return
+                    
+                    st.success("✅ Análises concluídas com sucesso!")
+                    
+                    # Sumário da análise
+                    st.subheader("📋 Sumário da Análise")
+                    
+                    col1, col2, col3 = st.columns(3)
+                    with col1:
+                        st.metric("Registros Analisados", len(analysis_df))
+                    with col2:
+                        st.metric("Variáveis", len(selected_vars))
+                    with col3:
+                        if 'timestamp' in df.columns:
+                            latest_reading = df['timestamp'].max()
+                            st.metric("Última Leitura", latest_reading.strftime("%d/%m/%Y %H:%M"))
+                        else:
+                            st.metric("Última Leitura", "N/A")
+                    
+                    # Exibir resultados estatísticos
+                    if "statistics" in results and results["statistics"]:
+                        st.subheader("📊 Resultados Estatísticos")
+                        
+                        for var, stats in results["statistics"].items():
+                            st.markdown(f"### 📈 {var.title().replace('_', ' ')}")
+                            
+                            col1, col2, col3 = st.columns(3)
+                            
+                            # Tendência central
+                            if "tendencia_central" in stats:
+                                with col1:
+                                    st.markdown("**Tendência Central**")
+                                    tc = stats["tendencia_central"]
+                                    st.metric("Média", f"{tc.get('media', 0):.4f}")
+                                    st.metric("Mediana", f"{tc.get('mediana', 0):.4f}")
+                                    if not pd.isna(tc.get('moda', 0)):
+                                        st.metric("Moda", f"{tc.get('moda', 0):.4f}")
+                            
+                            # Dispersão
+                            if "dispersao" in stats:
+                                with col2:
+                                    st.markdown("**Dispersão**")
+                                    disp = stats["dispersao"]
+                                    st.metric("Variância", f"{disp.get('variancia', 0):.4f}")
+                                    st.metric("Desvio Padrão", f"{disp.get('desvio_padrao', 0):.4f}")
+                                    st.metric("Amplitude", f"{disp.get('amplitude', 0):.4f}")
+                                    st.metric("IQR", f"{disp.get('iqr', 0):.4f}")
+                            
+                            # Separatrizes
+                            if "separatrizes" in stats:
+                                with col3:
+                                    st.markdown("**Separatrizes**")
+                                    sep = stats["separatrizes"]
+                                    
+                                    if "quartis" in sep:
+                                        quartis = sep["quartis"]
+                                        # quartis vem como lista [Q1, Q2, Q3] do R
+                                        if isinstance(quartis, list) and len(quartis) >= 3:
+                                            st.metric("Q1", f"{quartis[0]:.4f}")
+                                            st.metric("Q2 (Mediana)", f"{quartis[1]:.4f}")
+                                            st.metric("Q3", f"{quartis[2]:.4f}")
+                                        elif isinstance(quartis, dict):
+                                            # Fallback para formato de dicionário
+                                            st.metric("Q1", f"{quartis.get('25%', 0):.4f}")
+                                            st.metric("Q2 (Mediana)", f"{quartis.get('50%', 0):.4f}")
+                                            st.metric("Q3", f"{quartis.get('75%', 0):.4f}")
+                            
+                            st.divider()
+                    
+                    # Exibir gráficos
+                    if "graphics" in results and results["graphics"]:
+                        st.subheader("📊 Visualizações")
+                        
+                        graphics = results["graphics"]
+                        
+                        # Gráfico de potabilidade (se disponível)
+                        if "barplot_potability" in graphics:
+                            st.markdown("### 📊 Distribuição de Potabilidade")
+                            img_data = base64.b64decode(graphics["barplot_potability"])
+                            st.image(img_data, use_container_width=True)
+                            st.divider()
+                        
+                        # Histogramas e boxplots para cada variável
+                        for var in selected_vars:
+                            hist_key = f"histogram_{var}"
+                            box_key = f"boxplot_{var}"
+                            
+                            if hist_key in graphics or box_key in graphics:
+                                st.markdown(f"### 📈 {var.title().replace('_', ' ')}")
+                                
+                                col1, col2 = st.columns(2)
+                                
+                                if hist_key in graphics:
+                                    with col1:
+                                        st.markdown("**Histograma**")
+                                        img_data = base64.b64decode(graphics[hist_key])
+                                        st.image(img_data, use_container_width=True)
+                                
+                                if box_key in graphics:
+                                    with col2:
+                                        st.markdown("**Boxplot**")
+                                        img_data = base64.b64decode(graphics[box_key])
+                                        st.image(img_data, use_container_width=True)
+                                
+                                st.divider()
+                    
+                    # Insights e recomendações
+                    st.subheader("💡 Insights e Recomendações")
+                    
+                    insights = []
+                    
+                    if "statistics" in results:
+                        for var, stats in results["statistics"].items():
+                            if "dispersao" in stats:
+                                cv = stats["dispersao"]["desvio_padrao"] / abs(stats["tendencia_central"]["media"]) * 100
+                                if cv > 30:
+                                    insights.append(f"🔍 **{var}**: Alta variabilidade detectada (CV={cv:.1f}%) - verificar calibração do sensor")
+                                elif cv < 5:
+                                    insights.append(f"✅ **{var}**: Baixa variabilidade (CV={cv:.1f}%) - sensor estável")
+                    
+                    if insights:
+                        for insight in insights:
+                            st.markdown(insight)
+                    else:
+                        st.info("📊 Dados dentro dos padrões esperados.")
+                
+                except Exception as e:
+                    st.error(f"❌ Erro durante a análise: {str(e)}")
+                    logger.error(f"Erro na análise R: {str(e)}")
+            
+    except Exception as e:
+        st.error(f"❌ Erro ao carregar dados: {str(e)}")
+        logger.error(f"Erro ao carregar dados em tempo real: {str(e)}")
 
 
 if __name__ == "__main__":
