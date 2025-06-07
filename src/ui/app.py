@@ -913,7 +913,7 @@ Working Dir: {os.getcwd()}
                         if "barplot_potability" in graphics:
                             st.markdown("### 📊 Distribuição de Potabilidade")
                             img_data = base64.b64decode(graphics["barplot_potability"])
-                            st.image(img_data, use_column_width=True)
+                            st.image(img_data, use_container_width=True)
                             st.divider()
                         
                         # Histogramas e boxplots
@@ -930,13 +930,13 @@ Working Dir: {os.getcwd()}
                                     with col1:
                                         st.markdown("**Histograma**")
                                         img_data = base64.b64decode(graphics[hist_key])
-                                        st.image(img_data, use_column_width=True)
+                                        st.image(img_data, use_container_width=True)
                                 
                                 if box_key in graphics:
                                     with col2:
                                         st.markdown("**Boxplot**")
                                         img_data = base64.b64decode(graphics[box_key])
-                                        st.image(img_data, use_column_width=True)
+                                        st.image(img_data, use_container_width=True)
                                 
                                 st.divider()
                     
@@ -1217,7 +1217,7 @@ Working Dir: {os.getcwd()}
                         if "barplot_potability" in graphics:
                             st.markdown("### 📊 Distribuição de Potabilidade")
                             img_data = base64.b64decode(graphics["barplot_potability"])
-                            st.image(img_data, use_column_width=True)
+                            st.image(img_data, use_container_width=True)
                             st.divider()
                         
                         # Histogramas e boxplots para cada variável
@@ -1234,13 +1234,13 @@ Working Dir: {os.getcwd()}
                                     with col1:
                                         st.markdown("**Histograma**")
                                         img_data = base64.b64decode(graphics[hist_key])
-                                        st.image(img_data, use_column_width=True)
+                                        st.image(img_data, use_container_width=True)
                                 
                                 if box_key in graphics:
                                     with col2:
                                         st.markdown("**Boxplot**")
                                         img_data = base64.b64decode(graphics[box_key])
-                                        st.image(img_data, use_column_width=True)
+                                        st.image(img_data, use_container_width=True)
                                 
                                 st.divider()
                     

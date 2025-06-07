@@ -35,5 +35,12 @@ pytest>=7.4.0
 # Análises estatísticas em R
 # NOTA: R deve ser instalado separadamente do sistema
 # Download em: https://cran.r-project.org/
-# Pacotes R necessários: ggplot2, dplyr, jsonlite (instalados automaticamente)
+# 
+# Pacotes R necessários (instalados automaticamente pelo sistema):
+# - ggplot2: Gráficos estatísticos avançados (histogramas, boxplots)
+# - dplyr: Manipulação de dados e estatísticas
+# - jsonlite: Comunicação de dados entre Python e R
+#
+# Comando manual de instalação dos pacotes R (se necessário):
+# install.packages(c("ggplot2", "dplyr", "jsonlite"))
 
