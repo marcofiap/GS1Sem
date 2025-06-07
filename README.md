@@ -145,6 +145,9 @@ Exemplo: String serverName = "http://192.168.2.166:8000/data";
 ### 8. Emule os sensores e clique no botão
 A aplicação estará disponível em: http://localhost:8501
 
+### 9. Para funcionar a análise em R pode ser preciso executar no seu terminal:
+Rscript -e 'install.packages(c("ggplot2", "dplyr", "jsonlite"), repos = "https://cloud.r-project.org")'
+
 ## 📊 Como Adicionar Dados ao Sistema
 
 Após a instalação, o banco de dados Oracle estará vazio. Para popular o sistema com dados para análise, você pode usar uma das seguintes opções:
