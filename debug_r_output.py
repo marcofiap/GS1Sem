@@ -123,5 +123,11 @@ def debug_r_output():
         import traceback
         traceback.print_exc()
 
+    print("🔑 r_output: <class 'str'>")
+    print(f"📋 Output R completo:")
+    print("=" * 50)
+    print(results["r_output"])
+    print("=" * 50)
+
 if __name__ == "__main__":
     debug_r_output() 

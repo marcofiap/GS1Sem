@@ -142,7 +142,7 @@ analyze_water_data <- function(data_file, output_dir) {
   write_json(results, file.path(output_dir, "statistics.json"), 
              pretty = TRUE, auto_unbox = TRUE)
   
-  cat("Analise concluida. Resultados salvos em:", output_dir, "\n")
+  cat("Análise concluída. Resultados salvos em:", output_dir, "\n")
 }
 
 # Executar análise se chamado diretamente
@@ -188,7 +188,7 @@ if (length(args) >= 2) {
                 rscript_cmd = self.rscript_path
                 cmd = [rscript_cmd, str(script_path), data_file, temp_output]
                 
-                result = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
+                result = subprocess.run(cmd, capture_output=True, text=True, timeout=60, encoding='utf-8')
                 
                 if result.returncode != 0:
                     logger.error(f"Erro na execução do R: {result.stderr}")

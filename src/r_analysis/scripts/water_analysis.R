@@ -108,7 +108,7 @@ analyze_water_data <- function(data_file, output_dir) {
   write_json(results, file.path(output_dir, "statistics.json"), 
              pretty = TRUE, auto_unbox = TRUE)
   
-  cat("Analise concluida. Resultados salvos em:", output_dir, "
+  cat("Análise concluída. Resultados salvos em:", output_dir, "
 ")
 }
 
