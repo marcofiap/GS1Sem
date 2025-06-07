@@ -939,11 +939,6 @@ Working Dir: {os.getcwd()}
                                         st.image(img_data, use_container_width=True)
                                 
                                 st.divider()
-                    
-                    # Log da execução R
-                    if "r_output" in results and results["r_output"]:
-                        with st.expander("🔍 Log da Execução R"):
-                            st.code(results["r_output"])
                 
                 except Exception as e:
                     st.error(f"❌ Erro durante a análise: {str(e)}")
@@ -1263,11 +1258,6 @@ Working Dir: {os.getcwd()}
                             st.markdown(insight)
                     else:
                         st.info("📊 Dados dentro dos padrões esperados.")
-                    
-                    # Log da execução R
-                    if "r_output" in results and results["r_output"]:
-                        with st.expander("🔍 Log da Execução R"):
-                            st.code(results["r_output"])
                 
                 except Exception as e:
                     st.error(f"❌ Erro durante a análise: {str(e)}")
