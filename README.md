@@ -229,35 +229,80 @@ GET /data?ph=7.2&turbidity=3.5&chloramines=1.2&conductivity=450
 ```
 GS1Sem/
 ├── config/
-│   └── config.yaml              # Configurações do sistema
+│   └── config.yaml                    # Configurações do sistema
+├── imagem/
+│   ├── logo-fiap.png                  # Logo da FIAP
+│   └── circuito.png                   # Imagem do circuito
+├── include/
+│   └── README                         # Documentação include
+├── lib/
+│   └── README                         # Documentação lib
+├── logs/
+│   └── app.log                        # Logs do sistema
+├── simularsensor/                     # Simulador de sensores ESP32
+│   ├── imagem/
+│   │   └── circuito.png               # Imagem do circuito
+│   ├── servidor_local/
+│   │   └── servidor.py                # Servidor local para sensores
+│   ├── src/
+│   │   └── main.cpp                   # Código ESP32 (C++)
+│   ├── .gitignore
+│   ├── compile.bat                    # Script compilação Windows
+│   ├── compile.sh                     # Script compilação Unix
+│   ├── diagram.json                   # Diagrama Wokwi
+│   ├── platformio.ini                 # Configurações PlatformIO
+│   ├── README_SIMULADOR.md            # Documentação simulador
+│   ├── requirements.txt               # Dependências simulador
+│   └── wokwi.toml                     # Configurações Wokwi
 ├── src/
 │   ├── api/
 │   │   ├── __init__.py
-│   │   └── controller.py        # Controller principal da API
+│   │   ├── controller.py              # Controller principal da API
+│   │   └── servidor.py                # Servidor HTTP para sensores
 │   ├── model/
 │   │   ├── __init__.py
-│   │   ├── train.py            # Treinamento do modelo
-│   │   └── predict.py          # Inferência e predições
+│   │   ├── predict.py                 # Inferência e predições
+│   │   ├── train.py                   # Treinamento do modelo
+│   │   └── water_quality_model.pkl    # Modelo treinado
 │   ├── persistence/
 │   │   ├── __init__.py
-│   │   └── db.py               # Conexão Oracle e Repository
+│   │   └── db.py                      # Conexão Oracle e Repository
 │   ├── processing/
 │   │   ├── __init__.py
-│   │   └── data_processor.py   # Processamento de dados
+│   │   └── data_processor.py          # Processamento de dados
+│   ├── r_analysis/                    # Análise estatística em R
+│   │   ├── scripts/
+│   │   │   └── water_analysis.R       # Script R para análise
+│   │   ├── __init__.py
+│   │   └── r_analyzer.py              # Interface Python-R
 │   ├── ui/
 │   │   ├── __init__.py
-│   │   └── app.py              # Interface Streamlit
-│   └── utils/
-│       ├── __init__.py
-│       └── logging.py          # Sistema de logging
-├── servidor_local/
-│   └── servidor.py             # Servidor Flask para ESP32
-├── logs/                       # Logs do sistema
-├── water_potability.csv        # Dataset de treinamento
-├── train_model.py             # Script de treinamento
-├── run_app.py                 # Script de execução
-├── requirements.txt           # Dependências Python
-└── README.md                  # Este arquivo
+│   │   └── app.py                     # Interface Streamlit
+│   ├── utils/
+│   │   ├── __init__.py
+│   │   └── logging.py                 # Sistema de logging
+│   └── __init__.py
+├── tests/                             # Testes do sistema
+│   ├── __init__.py
+│   ├── 2water_quality_controller_test.py
+│   ├── predictor_test_cases.py
+│   ├── README
+│   ├── water_quality_controller_test.py
+│   ├── water_quality_predictor_test.py
+│   └── WaterQualityModelTrainer_test.py
+├── .gitignore                         # Arquivos ignorados pelo Git
+├── __init__.py                        # Arquivo de inicialização
+├── ANÁLISE_R_INSTRUÇÕES.md            # Instruções para análise R
+├── debug_r_output.py                  # Debug de saídas R
+├── README.md                          # Este arquivo
+├── requirements.txt                   # Dependências Python
+├── run_app.py                         # Script de execução principal
+├── run_tests.py                       # Script para executar testes
+├── test_r_analysis.py                 # Testes da análise R
+├── test_r_streamlit.py                # Testes Streamlit com R
+├── test_r_venv.py                     # Testes ambiente virtual R
+├── train_model.py                     # Script de treinamento
+└── water_potability.csv               # Dataset de treinamento
 ```
 
 ## 🔧 Configurações Avançadas
